@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Cuentas Streaming</title>
+    <link rel="icon" href="https://static.wikia.nocookie.net/logopedia/images/0/0b/Max_%28streaming_service%29_2023.svg/revision/latest?cb=20230413022307" type="image/svg+xml">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .venta {
+            background-color: white;
+            border: 2px solid #ed7318;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+        .venta p {
+            margin: 15px 0;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .botones {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .boton {
+            background-color: #ed7318;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        .boton:hover {
+            background-color: #d66616;
+        }
+        .imagen {
+            width: 100px;
+            height: auto;
+            margin: 20px auto;
+        }
+        .bandera {
+            vertical-align: middle;
+            width: 20px;
+            height: auto;
+        }
+        .info-cuentas {
+            display: flex;
+            justify-content: space-around;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .info-cuentas div {
+            width: 45%;
+        }
+    </style>
+</head>
+<body onload="openModal()">
+
+    <div class="overlay" id="overlay">
+        <div class="venta">
+            <img class="imagen" src="https://static.wikia.nocookie.net/logopedia/images/0/0b/Max_%28streaming_service%29_2023.svg/revision/latest?cb=20230413022307" alt="Logo">
+            <p>Mira todo lo que te ofrece esta plataforma (MIRA EL VIDEO)</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/1b0tMtFlPkc" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="info-cuentas">
+                <div>
+                    <strong>PANTALLA VIP</strong>
+                    <p>Un perfil que puedes personalizar tú o tu cliente si fuera el caso sin problemas de conexión que debes usar en un solo dispositivo o pierdes la cuenta.</p>
+                </div>
+                <div>
+                    <strong>CUENTA COMPLETA</strong>
+                    <p>Cuenta de 5 perfiles que tú organizarás o distribuirás. Esta plataforma no presenta problemas de abrir en diferentes sitios.</p>
+                </div>
+            </div>
+            <p><strong>CUENTA SOLO PARA USAR EN VENEZUELA</strong> <img class="bandera" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flag_of_Venezuela.svg/255px-Flag_of_Venezuela.svg.png" alt="Bandera de Venezuela"></p>
+            <div class="botones">
+                <button class="boton" onclick="window.location.href='https://departamentodecuentas.company.site/products/cuenta-m4x'">Comprar Cuentas</button>
+                <button class="boton" onclick="window.location.href='https://www.vendeygana.net/user/'">Volver a Vende y Gana</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('overlay').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
