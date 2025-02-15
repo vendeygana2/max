@@ -5,44 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+        body, html {
             margin: 0;
-            height: 100vh;
-            overflow: hidden; /* Evita el desplazamiento no deseado */
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
-        .container {
-            background-color: #fff;
-            position: relative;
-            width: 100%;
-            height: 100vh; /* Ocupa toda la altura de la pantalla */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .close-btn {
+        .iframe-container {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #ff5f5f;
-            border: none;
-            color: #fff;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            z-index: 1000; /* Asegura que el botón esté por encima del iframe */
-        }
-        iframe {
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%; /* Ocupa toda la altura disponible */
-            border: none; /* Elimina el borde del iframe */
+            height: 100%;
         }
-        @media (max-width: 768px) {
-            .container {
-                border-radius: 0; /* Sin bordes redondeados en móviles */
-            }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
         .modal {
             display: none; /* Oculto por defecto */
@@ -54,44 +33,25 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.9); /* Fondo negro con opacidad */
-            text-align: center; /* Centrar el contenido */
+            text-align: center;
         }
         .modal-content {
             background-color: #333;
-            margin: 10% auto;
+            margin: auto;
             padding: 30px;
             border: 5px solid #a9ff00; /* Marco verde */
-            width: 50%;
+            width: 80%;
+            max-width: 500px;
             text-align: center;
             border-radius: 10px;
             color: white; /* Color del texto */
             font-size: 18px; /* Aumentar el tamaño de la letra */
             position: relative;
         }
-        .modal-content .logo-panaxtreaming,
-        .modal-content .logo-flujo {
-            width: 180px; /* Tamaño del logo de Panaxtreaming */
+        .modal-content .logo {
+            width: 100px; /* Ajustar el tamaño del logo */
             height: auto;
-            margin: 20px 10px; /* Espacio alrededor de los logos */
-            animation: blink 2s infinite; /* Animación de parpadeo */
-        }
-        .modal-content .gif {
-            width: 100px; /* Tamaño del GIF */
-            height: auto;
-            margin: 20px 10px;
-        }
-        .modal-content button {
-            background-color: #a9ff00; /* Color del marco verde */
-            color: black; /* Letras negras */
-            border: none;
-            padding: 15px 30px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px 2px;
-            cursor: pointer;
-            border-radius: 5px;
+            margin: 10px;
         }
         .modal-content .close {
             position: absolute;
@@ -106,37 +66,41 @@
             font-size: 16px;
             z-index: 3;
         }
-        .content-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        @keyframes blink {
-            50% {
-                opacity: 0.5;
-            }
+        .modal-content .btn {
+            background-color: #a9ff00; /* Color del marco verde */
+            color: black; /* Letras negras */
+            border: none;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="close-btn" onclick="mostrarModal()">X</button>
-        <iframe src="https://vendeygana2.github.io/max1/" id="mainIframe"></iframe>
+    <!-- Contenedor para el iframe para ocupar toda la pantalla -->
+    <div class="iframe-container">
+        <iframe src="https://fluidforms.co/embed/form?id=679ab419bf37cd2cddc34330"></iframe>
     </div>
 
+    <!-- Botón "X" para abrir el popup -->
+    <button class="close-btn" onclick="mostrarModal()" style="position: absolute; top: 10px; right: 10px; background-color: #ff5f5f; border: none; color: #fff; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 1000;">X</button>
+
+    <!-- Ventana emergente -->
     <div id="miModal" class="modal">
         <div class="modal-content">
             <button class="close" onclick="window.location.href='https://www.vendeygana.net/user/'">X</button>
-            <div class="content-wrapper">
-                <img class="logo-panaxtreaming" src="https://dhgf5mcbrms62.cloudfront.net/110979006/header-fcHJMd/IVsTzWZ-200x200.webp" alt="Logo Panaxtreaming">
-                <img class="gif" src="https://i.gifer.com/DCCl.gif" alt="GIF animado">
-                <img class="logo-flujo" src="https://flujotval.com/wp-content/uploads/2024/12/LOGO-TAMANO-300-1.png" alt="Logo FlujoTV">
-            </div>
+            <img class="logo" src="https://dhgf5mcbrms62.cloudfront.net/110979006/header-fcHJMd/IVsTzWZ-200x200.webp" alt="Logo Panaxtreaming">
+            <img class="logo" src="https://flujotvla.com/wp-content/uploads/2025/01/logo_flujotv_blanco-300x181-1-e1735926597394.png" alt="Logo FlujoTV">
             <p>Si quieres disfrutar sin complicaciones de problemas como CONTRASEÑA INCORRECTA Y LA DIFICULTAD DE INICIAR SESION DE NETFLIX y otras aplicaciones, adquiere Panaxtreaming o Flujo TV.</p>
             <p>Panaxtreaming es orgullosamente venezolana hecha por venezolanos y, como Flujo TV, te ofrecen:</p>
             <p>TV EN VIVO con más de 800 canales: Deportes (TODOS LOS ESPN, FOXSPORT y DIRECTV SPORTS), Noticias, Infantiles, música y un catálogo de más de 9,000 películas y series estrenos de las principales plataformas como Netflix, Amazon Prime, Disney Plus, Max, Crunchyroll, Apple TV.</p>
-            <button onclick="window.location.href='https://vendeygana2.github.io/comprapanaxtreaming/'">Comprar Panaxtreaming</button>
-            <button onclick="window.location.href='https://vendeygana2.github.io/compraflujotv/'">Comprar Flujo TV</button>
+            <button class="btn" onclick="window.location.href='https://vendeygana2.github.io/comprapanaxtreaming/'">Comprar Panaxtreaming</button>
+            <button class="btn" onclick="window.location.href='https://vendeygana2.github.io/compraflujotv/'">Comprar Flujo TV</button>
         </div>
     </div>
 
