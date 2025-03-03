@@ -3,53 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+    <title>Ventana Emergente</title>
     <style>
-        body {
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        html, body {
             margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            position: relative;
-            width: 100%;
+            padding: 0;
             height: 100%;
+            overflow: hidden;
+            background-color: #000000; /* Fondo negro */
             display: flex;
             justify-content: center;
             align-items: center;
         }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .popup-container {
+            background-color: #000000; /* Fondo negro para el contenido */
+            border: 5px solid #ed7318;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
         }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 50%;
+        h1 {
+            color: #ffffff;
+            margin: 0;
         }
-
-        .close-btn:hover {
-            background-color: #d32f2f;
+        p {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .blink-text {
+            color: #ffffff;
+            font-size: 18px;
+            margin: 10px 0;
+            animation: blink 2s infinite;
+        }
+        .download-button {
+            display: inline-block;
+            padding: 15px 25px;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #ed7318;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .logo, .footer-logo {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+        }
+        @media (max-width: 600px) {
+            .popup-container {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                box-shadow: none;
+                max-width: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <iframe src="https://fluidforms.co/embed/form?id=679ab419bf37cd2cddc34330"></iframe>
-        <button class="close-btn" onclick="window.location.href='https://www.vendeygana.net/user/'">X</button>
+    <div class="popup-container">
+        <img src="https://www.vendeygana.net/assets/img/logo-1.png" alt="Logo" class="logo">
+        <h1>VENDE Y GANA SIEMPRE MEJORANDO PARA TI Y POR TI</h1>
+        <p>
+            en una alianza estratégica nos unimos para darte más con Panaxtreaming donde podrás hacer tus recargas con tu usuario Vende y Gana y además comprar cuentas y mucho más de forma más fácil y sencilla. ¡Te invitamos a descargar nuestra aplicación!
+        </p>
+        <p class="blink-text">EL PRODUCTO QUE BUSCAS AHORA ESTÁ AQUÍ</p>
+        <a href="https://app.jotform.com/250464329670661/page/33" class="download-button">Descarga de Aplicación</a>
+        <img src="https://dhgf5mcbrms62.cloudfront.net/110979006/header-fcHJMd/IVsTzWZ-600x600.webp" alt="Footer Logo" class="footer-logo">
     </div>
 </body>
 </html>
