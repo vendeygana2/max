@@ -27,30 +27,31 @@
             box-sizing: border-box;
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 90%;
+            width: 95%;
             max-width: 600px;
             border-radius: 10px;
         }
         h1 {
             color: #ffffff;
             margin: 0;
+            font-size: 20px;
         }
         p {
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             margin: 10px 0;
         }
         .blink-text {
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             margin: 10px 0;
             animation: blink 2s infinite;
         }
-        .download-button, .youtube-button {
+        .download-button, .youtube-button, .reload-button {
             display: inline-block;
-            padding: 15px 25px;
-            margin-top: 20px;
-            font-size: 18px;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 16px;
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
@@ -64,18 +65,30 @@
         .youtube-button:hover {
             background-color: #CC0000;
         }
-        .logo, .footer-logo {
+        .reload-button {
+            background-color: #007BFF; /* Azul */
+        }
+        .reload-button:hover {
+            background-color: #0056b3;
+        }
+        .logo {
+            max-width: 70%; /* Reducción del 30% */
+            height: auto;
+            margin: 15px 0;
+        }
+        .footer-logo {
             max-width: 100%;
             height: auto;
-            margin: 20px 0;
+            margin: 15px 0;
         }
         @media (max-width: 600px) {
             .popup-container {
                 width: 100%;
-                height: 100%;
+                height: auto;
                 border-radius: 0;
                 box-shadow: none;
                 max-width: none;
+                padding: 15px;
             }
             .footer-logo {
                 max-width: 90%;
@@ -93,6 +106,7 @@
         <p class="blink-text">EL PRODUCTO QUE BUSCAS AHORA ESTÁ AQUÍ</p>
         <a href="https://www.youtube.com/watch?v=YaZccFewDjY" class="youtube-button">Video de Descarga de App</a>
         <a href="https://app.jotform.com/250464329670661/page/33" class="download-button">Descarga de Aplicación</a>
+        <a href="#" onclick="location.reload()" class="reload-button">Recargar Página</a>
         <img src="https://dhgf5mcbrms62.cloudfront.net/110979006/header-fcHJMd/IVsTzWZ-600x600.webp" alt="Footer Logo" class="footer-logo">
     </div>
 </body>
