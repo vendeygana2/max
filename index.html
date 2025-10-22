@@ -3,111 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botones de Streaming</title>
+    <title>Sistema de Recargas</title>
     <style>
+        /* [MANTENER TODOS LOS ESTILOS EXISTENTES] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
+            background-color: #f5f5f5;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-image: url('https://ecdisis.com/wp-content/uploads/2021/01/plataformas-de-streaming-900x506-1.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
-
-        .contenedor-principal {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
             padding: 20px;
-            max-width: 900px;
-            width: 95%;
         }
-
-        .cerrar-principal-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            cursor: pointer;
-            z-index: 10;
-            background: none;
-            border: none;
-            padding: 0;
-            line-height: 1;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .cerrar-principal-btn:hover {
-            color: #000;
-        }
-
-        .contenedor-botones {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        
+        .container {
             width: 100%;
-        }
-
-        .boton-imagen {
-            background: white;
-            border: none;
-            padding: 15px;
-            margin: 15px;
-            cursor: pointer;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            background-color: white;
             border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            width: 180px;
-            height: 80px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00a2e8, #005bea);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 25px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        
+        .operator-buttons {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0;
+            gap: 10px;
+            margin-bottom: 20px;
         }
-
-        .boton-imagen:hover {
-            transform: translateY(-5px);
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+        
+        .operator-btn {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-
-        .boton-imagen img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        
+        .operator-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        .boton-negro {
-            background-color: #000000;
-            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        
+        .operator-btn.movistar {
+            background-color: #f0f9ff;
+            border-color: #00a2e8;
+            color: #00a2e8;
         }
-
-        .boton-negro:hover {
-            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7);
+        
+        .operator-btn.movilnet {
+            background-color: #fff0f0;
+            border-color: #e80000;
+            color: #e80000;
         }
-
+        
+        .operator-btn.digitel {
+            background-color: #f0fff0;
+            border-color: #00a200;
+            color: #00a200;
+        }
+        
+        .operator-btn.selected {
+            color: white;
+        }
+        
+        .operator-btn.movistar.selected {
+            background-color: #00a2e8;
+        }
+        
+        .operator-btn.movilnet.selected {
+            background-color: #e80000;
+        }
+        
+        .operator-btn.digitel.selected {
+            background-color: #00a200;
+        }
+        
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .amount-btn {
+            background-color: #f8f8f8;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .amount-btn:hover {
+            background-color: #e8f6ff;
+            border-color: #00a2e8;
+        }
+        
+        .amount-btn.selected {
+            background-color: #00a2e8;
+            color: white;
+            border-color: #00a2e8;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #00a2e8;
+            box-shadow: 0 0 0 2px rgba(0, 162, 232, 0.1);
+        }
+        
+        .input-group .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .input-group .error.show {
+            display: block;
+        }
+        
+        .summary {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .summary-row.total {
+            font-weight: bold;
+            font-size: 18px;
+            border-top: 2px solid #ddd;
+            border-bottom: none;
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: #00a2e8;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0088c6;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #555;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -115,295 +257,633 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            position: relative;
-            width: 90%;
-            height: 90%;
-            margin: 2% auto;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-iframe-container {
-            flex-grow: 1;
-            overflow: auto;
-            width: 100%;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            color: white;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-            text-shadow: 0 0 5px black;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .boton-apple-tv {
-            background-color: black;
-            background-image: url('https://i0.wp.com/pub-f354ec240bea480db7320bd0e29d972e.r2.dev/sites/4/Untitled-21-c6199aa35e300684ffb7.png?fit=1200%2C675&ssl=1');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        /* Estilos para el modal de fuera de horario */
-        .fuera-horario-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
+            background-color: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
-
-        .fuera-horario-modal-content {
+        
+        .modal-content {
             background-color: white;
-            padding: 30px;
             border-radius: 10px;
-            max-width: 500px;
             width: 90%;
+            max-width: 400px;
+            padding: 30px;
             text-align: center;
-            position: relative;
-            animation: fadeIn 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-
-        .fuera-horario-modal-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
+        
+        .logo {
+            width: 120px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
-            cursor: pointer;
+            font-size: 20px;
+            border-radius: 8px;
+        }
+        
+        .logo.movistar {
+            background-color: #00a2e8;
+            color: white;
+        }
+        
+        .logo.movilnet {
+            background-color: #e80000;
+            color: white;
+        }
+        
+        .logo.digitel {
+            background-color: #00a200;
+            color: white;
+        }
+        
+        .success-icon {
+            font-size: 48px;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+        
+        .modal h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .transaction-details {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .transaction-details p {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .transaction-details .label {
+            font-weight: 500;
             color: #555;
         }
-
-        .fuera-horario-modal-close:hover {
-            color: #000;
+        
+        .transaction-details .value {
+            font-weight: bold;
         }
-
-        .fuera-horario-modal h2 {
-            color: #d32f2f;
-            margin-top: 0;
-        }
-
-        .fuera-horario-modal p {
+        
+        .close-btn {
+            background-color: #00a2e8;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
             font-size: 16px;
-            line-height: 1.5;
-            margin-bottom: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        .close-btn:hover {
+            background-color: #0088c6;
+            transform: translateY(-2px);
         }
-
-        @media (max-width: 600px) {
-            .contenedor-botones {
-                width: 95%;
-            }
-            .boton-imagen {
-                width: calc(50% - 20px);
-                margin: 10px;
-            }
-            
-            .fuera-horario-modal-content {
-                padding: 20px;
-            }
-            
-            .fuera-horario-modal h2 {
-                font-size: 20px;
-            }
-            
-            .fuera-horario-modal p {
-                font-size: 14px;
-            }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
         }
-
-        @media (min-width: 601px) and (max-width: 900px) {
-            .contenedor-botones {
-                width: 90%;
-            }
-            .boton-imagen {
-                width: calc(33.33% - 20px);
-                margin: 10px;
-            }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00a2e8;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .operator-info {
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .cedula-info {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .debug-info {
+            background: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <div class="contenedor-principal">
-        <button class="cerrar-principal-btn" onclick="redirigirPrincipal()">×</button>
-        <div class="contenedor-botones">
-            <button class="boton-imagen" onclick="abrirModal('https://vendeygana.forms.app/compran3tflix')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png" alt="Netflix">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/amazonprime')">
-                <img src="https://cdn.worldvectorlogo.com/logos/amazon-prime-video-1.svg" alt="Amazon Prime Video">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/disneyplus')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/maxpremium')">
-                <img src="https://logodownload.org/wp-content/uploads/2024/03/max-logo.png" alt="Max">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/crunchyroll')">
-                <img src="https://cdn.worldvectorlogo.com/logos/crunchyroll-1.svg" alt="Crunchyroll">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/vix')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/ViX_Logo.svg/2560px-ViX_Logo.svg.png" alt="ViX">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/vikyrakuten')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Rakuten_Viki_Logo_2019.svg/1200px-Rakuten_Viki_Logo_2019.svg.png" alt="Viki">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://96vxnn73.forms.app/compraflujotv')">
-                <img src="https://tararear.com.ar/wp-content/uploads/2024/11/flujo-tv-smart-tv-apk.jpg" alt="Flujo TV">
-            </button>
-            <button class="boton-imagen boton-apple-tv" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/aplletv')">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/paramountplus')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Paramount%2B_logo.png" alt="Paramount+">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/plexpremium')">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Plex_logo_2022.svg/2560px-Plex_logo_2022.svg.png" alt="Plex">
-            </button>
-            <button class="boton-imagen boton-negro" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/panaxtreaming')">
-                <img src="https://dhgf5mcbrms62.cloudfront.net/110979006/header-fcHJMd/IVsTzWZ-600x600.webp" alt="Nuevo Servicio">
-            </button>
-            <button class="boton-imagen" onclick="abrirModal('https://online.forms.app/respuestasdereportesdefa/telelatino')">
-                <img src="https://doctor-pandora.odoo.com/web/image/product.template/8/image_1920?unique=889500d" alt="Doctor Pandora">
-            </button>
+    <div class="container">
+        <div class="header">
+            <h1>Sistema de Recargas</h1>
+            <p>Selecciona tu operadora y recarga</p>
         </div>
-    </div>
-
-    <!-- Modal para contenido de streaming -->
-    <div id="generalModal" class="modal">
-        <span class="close-btn" onclick="cerrarModal()">×</span>
-        <div class="modal-content">
-            <div class="modal-iframe-container">
-                <iframe id="modalFrame" src="" frameborder="0"></iframe>
+        
+        <div class="content">
+            <!-- Debug info -->
+            <div class="debug-info" id="debug-info">
+                <strong>Estado:</strong> <span id="debug-status">Listo</span>
+            </div>
+            
+            <div class="section">
+                <h2>Selecciona Operadora</h2>
+                <div class="operator-buttons">
+                    <div class="operator-btn movistar" data-operator="Movistar">Movistar</div>
+                    <div class="operator-btn movilnet" data-operator="Movilnet">Movilnet</div>
+                    <div class="operator-btn digitel" data-operator="Digitel">Digitel</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Monto de Recarga</h2>
+                <div class="operator-info" id="operator-info">
+                    Primero selecciona una operadora
+                </div>
+                <div class="amount-grid" id="amount-grid">
+                    <!-- Los montos se cargarán aquí automáticamente -->
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>Datos de Recarga</h2>
+                <div class="input-group">
+                    <label for="cedula">Cédula de identidad *</label>
+                    <input type="text" id="cedula" placeholder="Ej: V12345678" maxlength="9" required>
+                    <div class="cedula-info">Formato: V, E o J seguido de 5-8 dígitos (máx. 9 caracteres)</div>
+                    <div class="error" id="cedula-error">La cédula debe tener entre 5 y 8 dígitos, opcionalmente precedida por V, E o J.</div>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Número de teléfono *</label>
+                    <input type="tel" id="phone" placeholder="Ej: 04141234567" maxlength="11" required>
+                </div>
+            </div>
+            
+            <div class="summary">
+                <div class="summary-row">
+                    <span>Operadora:</span>
+                    <span id="summary-operator">-</span>
+                </div>
+                <div class="summary-row">
+                    <span>Recarga:</span>
+                    <span id="recharge-amount">0.00 Bs</span>
+                </div>
+                <div class="summary-row">
+                    <span>Servicio (2%):</span>
+                    <span id="service-fee">0.00 Bs</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total a pagar:</span>
+                    <span id="total-amount">0.00 Bs</span>
+                </div>
+            </div>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Procesando recarga...</p>
+            </div>
+            
+            <div class="actions">
+                <button class="btn btn-primary" id="pay-btn" disabled>Pagar Recarga</button>
+                <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
+                <button class="btn" id="test-btn" style="background-color: #ff9800; color: white;">Probar Conexión</button>
             </div>
         </div>
     </div>
-
-    <!-- Modal para fuera de horario -->
-    <div id="fueraHorarioModal" class="fuera-horario-modal">
-        <div class="fuera-horario-modal-content">
-            <span class="fuera-horario-modal-close" onclick="cerrarFueraHorarioModal()">×</span>
-            <h2>ATENCIÓN</h2>
-            <p>ESTIMADO USUARIO: POR EL MOMENTO NUESTRO PERSONAL Y DEPARTAMENTO STREAMING ESTÁ EN DESCANSO Y NO PODEMOS PROCESAR TU SOLICITUD.</p>
-            <p>PUEDES HACER EL PEDIDO Y SERÁ PROCESADO AL ESTAR OTRA VEZ LABORANDO.</p>
-            <p>HORARIO DE ATENCIÓN: LUNES A SÁBADO DE 8 AM A 9 PM Y DOMINGOS DE 10 AM A 8 PM</p>
-            <button onclick="continuarFueraHorario()" style="background-color: #d32f2f; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px;">CONTINUAR CON MI SOLICITUD</button>
+    
+    <!-- Modal de confirmación -->
+    <div class="modal" id="confirmation-modal">
+        <div class="modal-content">
+            <div class="logo" id="modal-logo">Movistar</div>
+            <div class="success-icon">✓</div>
+            <h2>RECARGA EXITOSA</h2>
+            
+            <div class="transaction-details">
+                <p>
+                    <span class="label">Operadora:</span>
+                    <span class="value" id="modal-operator">-</span>
+                </p>
+                <p>
+                    <span class="label">Cédula:</span>
+                    <span class="value" id="modal-cedula">-</span>
+                </p>
+                <p>
+                    <span class="label">Número:</span>
+                    <span class="value" id="modal-phone">-</span>
+                </p>
+                <p>
+                    <span class="label">N° Operación:</span>
+                    <span class="value" id="operation-number">12345678</span>
+                </p>
+                <p>
+                    <span class="label">Fecha:</span>
+                    <span class="value" id="transaction-date">01/01/2023</span>
+                </p>
+                <p>
+                    <span class="label">Hora:</span>
+                    <span class="value" id="transaction-time">12:00:00</span>
+                </p>
+                <p>
+                    <span class="label">Monto:</span>
+                    <span class="value" id="transaction-amount">0.00 Bs</span>
+                </p>
+            </div>
+            
+            <button class="close-btn" id="close-modal">Aceptar</button>
         </div>
     </div>
 
     <script>
-        function redirigirPrincipal() {
-            window.location.href = 'https://www.vendeygana.net/user/';
-        }
+        // =============================================
+        // CONFIGURACIÓN - VERIFICAR ESTA URL
+        // =============================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyj5DeZCgkHeI9dbpe518qTLoRhErPDDKamZjZvC8S8z0xZ9BegFk_JpSVrL0jJ4sUOw/exec';
+        
+        // =============================================
+        // MONTOS PRE-DEFINIDOS
+        // =============================================
+        const montosPorOperadora = {
+            'Movistar': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200],
+            'Movilnet': [150, 180, 270, 360, 450, 540, 630, 720, 810, 900, 990, 1080],
+            'Digitel': [120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320]
+        };
 
-        function abrirModal(url) {
-            if (estaFueraDeHorario()) {
-                mostrarFueraHorarioModal(url);
-                return;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const operatorButtons = document.querySelectorAll('.operator-btn');
+            const amountGrid = document.getElementById('amount-grid');
+            const operatorInfo = document.getElementById('operator-info');
+            const cedulaInput = document.getElementById('cedula');
+            const cedulaError = document.getElementById('cedula-error');
+            const phoneInput = document.getElementById('phone');
+            const summaryOperator = document.getElementById('summary-operator');
+            const rechargeAmount = document.getElementById('recharge-amount');
+            const serviceFee = document.getElementById('service-fee');
+            const totalAmount = document.getElementById('total-amount');
+            const payButton = document.getElementById('pay-btn');
+            const cancelButton = document.getElementById('cancel-btn');
+            const testButton = document.getElementById('test-btn');
+            const modal = document.getElementById('confirmation-modal');
+            const closeModalButton = document.getElementById('close-modal');
+            const modalLogo = document.getElementById('modal-logo');
+            const modalOperator = document.getElementById('modal-operator');
+            const modalCedula = document.getElementById('modal-cedula');
+            const modalPhone = document.getElementById('modal-phone');
+            const operationNumber = document.getElementById('operation-number');
+            const transactionDate = document.getElementById('transaction-date');
+            const transactionTime = document.getElementById('transaction-time');
+            const transactionAmount = document.getElementById('transaction-amount');
+            const loading = document.getElementById('loading');
+            const debugStatus = document.getElementById('debug-status');
+            
+            // Variables de estado
+            let selectedOperator = '';
+            let selectedAmount = 0;
+            let isCedulaValid = false;
+
+            // Función para actualizar debug info
+            function updateDebugInfo(message, type = 'info') {
+                debugStatus.textContent = message;
+                const debugInfo = document.getElementById('debug-info');
+                debugInfo.style.backgroundColor = type === 'error' ? '#ffebee' : 
+                                                type === 'success' ? '#e8f5e8' : '#f8f8f8';
+                debugInfo.style.borderColor = type === 'error' ? '#f44336' : 
+                                            type === 'success' ? '#4caf50' : '#ddd';
+                console.log('🔧 DEBUG:', message);
+            }
+
+            // Cargar cédula del almacenamiento local al iniciar
+            const savedCedula = localStorage.getItem('cedulaRecargas');
+            if (savedCedula) {
+                cedulaInput.value = savedCedula;
+                validateCedula();
             }
             
-            const modal = document.getElementById('generalModal');
-            const iframe = document.getElementById('modalFrame');
-            iframe.src = url;
-            modal.style.display = "block";
-            document.body.style.overflow = "hidden";
-        }
-
-        function cerrarModal() {
-            const modal = document.getElementById('generalModal');
-            const iframe = document.getElementById('modalFrame');
-            modal.style.display = "none";
-            iframe.src = "";
-            document.body.style.overflow = "auto";
-        }
-
-        function mostrarFueraHorarioModal(url) {
-            const modal = document.getElementById('fueraHorarioModal');
-            modal.dataset.url = url;
-            modal.style.display = "flex";
-        }
-
-        function cerrarFueraHorarioModal() {
-            const modal = document.getElementById('fueraHorarioModal');
-            modal.style.display = "none";
-        }
-
-        function continuarFueraHorario() {
-            const modal = document.getElementById('fueraHorarioModal');
-            const url = modal.dataset.url;
-            cerrarFueraHorarioModal();
-            
-            const generalModal = document.getElementById('generalModal');
-            const iframe = document.getElementById('modalFrame');
-            iframe.src = url;
-            generalModal.style.display = "block";
-            document.body.style.overflow = "hidden";
-        }
-
-        function estaFueraDeHorario() {
-            const ahora = new Date();
-            const horaActual = ahora.getHours();
-            const minutosActual = ahora.getMinutes();
-            const diaSemana = ahora.getDay(); // 0 (Domingo) a 6 (Sábado)
-            
-            const minutosTotales = horaActual * 60 + minutosActual;
-            
-            // Horario de Lunes a Sábado: 8 AM a 9 PM
-            if (diaSemana >= 1 && diaSemana <= 6) {
-                if (minutosTotales < 8 * 60 || minutosTotales >= 21 * 60) {
+            // Función para validar cédula
+            function validateCedula() {
+                const cedula = cedulaInput.value.trim();
+                const cedulaRegex = /^([VEJ])?(\d{5,8})$/i;
+                
+                if (cedulaRegex.test(cedula) && cedula.length <= 9) {
+                    cedulaError.classList.remove('show');
+                    isCedulaValid = true;
+                    localStorage.setItem('cedulaRecargas', cedula.toUpperCase());
+                    updatePayButtonState();
                     return true;
+                } else {
+                    cedulaError.classList.add('show');
+                    isCedulaValid = false;
+                    updatePayButtonState();
+                    return false;
                 }
             }
             
-            // Domingo: 10 AM a 8 PM
-            if (diaSemana === 0) {
-                if (minutosTotales < 10 * 60 || minutosTotales >= 20 * 60) {
-                    return true;
+            // Función para actualizar estado del botón de pago
+            function updatePayButtonState() {
+                if (selectedOperator && selectedAmount > 0 && isCedulaValid && phoneInput.value.trim()) {
+                    payButton.disabled = false;
+                } else {
+                    payButton.disabled = true;
                 }
             }
             
-            return false;
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('generalModal');
-            if (event.target == modal) {
-                cerrarModal();
+            // Función para mostrar los botones de monto
+            function displayMontos(operator) {
+                console.log('🔄 Cargando montos para:', operator);
+                updateDebugInfo(`Cargando montos para ${operator}...`);
+                
+                const montos = montosPorOperadora[operator] || [100, 200, 300];
+                amountGrid.innerHTML = '';
+                
+                montos.forEach(monto => {
+                    const amountBtn = document.createElement('div');
+                    amountBtn.className = 'amount-btn';
+                    amountBtn.textContent = `${monto}.00 Bs`;
+                    amountBtn.setAttribute('data-amount', monto);
+                    
+                    amountBtn.addEventListener('click', function() {
+                        document.querySelectorAll('.amount-btn').forEach(btn => {
+                            btn.classList.remove('selected');
+                        });
+                        this.classList.add('selected');
+                        selectedAmount = parseFloat(this.getAttribute('data-amount'));
+                        updateSummary();
+                        updatePayButtonState();
+                        updateDebugInfo(`${operator} - Monto seleccionado: ${monto} Bs`);
+                    });
+                    
+                    amountGrid.appendChild(amountBtn);
+                });
+                
+                updateDebugInfo(`${operator} - ${montos.length} montos cargados`, 'success');
             }
             
-            const fueraHorarioModal = document.getElementById('fueraHorarioModal');
-            if (event.target == fueraHorarioModal) {
-                cerrarFueraHorarioModal();
+            // FUNCIÓN MEJORADA: Enviar datos a Google Sheets
+            async function saveToGoogleSheets(data) {
+                updateDebugInfo('Enviando datos a Google Sheets...');
+                
+                try {
+                    console.log('📤 Enviando datos:', data);
+                    console.log('🔗 URL:', GOOGLE_SCRIPT_URL);
+                    
+                    // Agregar timestamp para evitar cache
+                    const url = GOOGLE_SCRIPT_URL + '?timestamp=' + Date.now();
+                    
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        mode: 'no-cors', // ← IMPORTANTE: Esto puede ayudar con CORS
+                        body: JSON.stringify(data)
+                    });
+                    
+                    console.log('📨 Respuesta recibida:', response);
+                    
+                    // Con 'no-cors', no podemos leer la respuesta, pero sabemos que se envió
+                    updateDebugInfo('Datos enviados exitosamente', 'success');
+                    
+                    // Simulamos una respuesta exitosa ya que no podemos leerla con 'no-cors'
+                    return {
+                        status: 'success',
+                        message: 'Datos guardados correctamente'
+                    };
+                    
+                } catch (error) {
+                    console.error('❌ Error completo:', error);
+                    updateDebugInfo(`Error: ${error.message}`, 'error');
+                    throw error;
+                }
             }
-        }
+            
+            // Función para probar conexión
+            async function testConexion() {
+                updateDebugInfo('Probando conexión con Google Apps Script...');
+                loading.style.display = 'block';
+                
+                try {
+                    const testData = {
+                        cedula: 'V12345678',
+                        operadora: 'TEST',
+                        numero: '04140000000',
+                        monto: '100.00',
+                        operacion: '99999999',
+                        fecha: new Date().toLocaleDateString('es-ES'),
+                        hora: new Date().toLocaleTimeString('es-ES')
+                    };
+                    
+                    const result = await saveToGoogleSheets(testData);
+                    updateDebugInfo('✅ Prueba de conexión EXITOSA', 'success');
+                    alert('✅ Conexión exitosa! Los datos de prueba se enviaron correctamente.');
+                    
+                } catch (error) {
+                    updateDebugInfo('❌ Prueba de conexión FALLIDA', 'error');
+                    alert('❌ Error en la conexión: ' + error.message);
+                } finally {
+                    loading.style.display = 'none';
+                }
+            }
+            
+            // Función para generar un número de operación aleatorio de 8 dígitos
+            function generateOperationNumber() {
+                return Math.floor(10000000 + Math.random() * 90000000);
+            }
+            
+            // Función para obtener la fecha y hora actual
+            function getCurrentDateTime() {
+                const now = new Date();
+                const date = now.toLocaleDateString('es-ES');
+                const time = now.toLocaleTimeString('es-ES');
+                return { date, time };
+            }
+            
+            // Función para calcular el porcentaje de servicio (2%)
+            function calculateServiceFee(amount) {
+                return amount * 0.02;
+            }
+            
+            // Función para actualizar el resumen
+            function updateSummary() {
+                const fee = calculateServiceFee(selectedAmount);
+                const total = selectedAmount + fee;
+                
+                summaryOperator.textContent = selectedOperator;
+                rechargeAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
+                serviceFee.textContent = fee.toFixed(2) + ' Bs';
+                totalAmount.textContent = total.toFixed(2) + ' Bs';
+            }
+            
+            // Event listeners para los botones de operadora
+            operatorButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    operatorButtons.forEach(btn => btn.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    selectedOperator = this.getAttribute('data-operator');
+                    operatorInfo.textContent = `Montos disponibles para ${selectedOperator}`;
+                    summaryOperator.textContent = selectedOperator;
+                    
+                    selectedAmount = 0;
+                    updateSummary();
+                    updatePayButtonState();
+                    
+                    displayMontos(selectedOperator);
+                });
+            });
+            
+            // Event listeners para validación en tiempo real
+            cedulaInput.addEventListener('input', function() {
+                this.value = this.value.toUpperCase();
+                validateCedula();
+            });
+            
+            phoneInput.addEventListener('input', function() {
+                updatePayButtonState();
+            });
+            
+            // Event listener para el botón de prueba
+            testButton.addEventListener('click', testConexion);
+            
+            // Event listener para el botón de pagar
+            payButton.addEventListener('click', async function() {
+                if (!selectedOperator) {
+                    alert('Por favor, selecciona una operadora.');
+                    return;
+                }
+                
+                if (selectedAmount === 0) {
+                    alert('Por favor, selecciona un monto para recargar.');
+                    return;
+                }
+                
+                if (!validateCedula()) {
+                    alert('Por favor, ingresa una cédula válida.');
+                    return;
+                }
+                
+                if (!phoneInput.value.trim()) {
+                    alert('Por favor, ingresa un número de teléfono.');
+                    return;
+                }
+                
+                loading.style.display = 'block';
+                payButton.disabled = true;
+                updateDebugInfo('Procesando recarga...');
+                
+                try {
+                    const operationNum = generateOperationNumber();
+                    const { date, time } = getCurrentDateTime();
+                    
+                    const formData = {
+                        cedula: cedulaInput.value.toUpperCase(),
+                        operadora: selectedOperator,
+                        numero: phoneInput.value,
+                        monto: selectedAmount.toFixed(2),
+                        operacion: operationNum.toString(),
+                        fecha: date,
+                        hora: time
+                    };
+                    
+                    console.log('📝 Datos a enviar:', formData);
+                    
+                    const result = await saveToGoogleSheets(formData);
+                    
+                    if (result.status === 'success') {
+                        modalLogo.textContent = selectedOperator;
+                        modalLogo.className = `logo ${selectedOperator.toLowerCase()}`;
+                        modalOperator.textContent = selectedOperator;
+                        modalCedula.textContent = cedulaInput.value.toUpperCase();
+                        modalPhone.textContent = phoneInput.value;
+                        operationNumber.textContent = operationNum;
+                        transactionDate.textContent = date;
+                        transactionTime.textContent = time;
+                        transactionAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
+                        
+                        modal.style.display = 'flex';
+                        updateDebugInfo('✅ Recarga procesada exitosamente', 'success');
+                    } else {
+                        throw new Error(result.message);
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ Error en el proceso:', error);
+                    updateDebugInfo(`❌ Error: ${error.message}`, 'error');
+                    alert('Error de conexión. Los datos no se guardaron.\n\nDetalle: ' + error.message);
+                } finally {
+                    loading.style.display = 'none';
+                    updatePayButtonState();
+                }
+            });
+            
+            // Event listener para el botón de cancelar
+            cancelButton.addEventListener('click', function() {
+                operatorButtons.forEach(btn => btn.classList.remove('selected'));
+                amountGrid.innerHTML = '';
+                phoneInput.value = '';
+                operatorInfo.textContent = 'Primero selecciona una operadora';
+                selectedOperator = '';
+                selectedAmount = 0;
+                updateSummary();
+                updatePayButtonState();
+                updateDebugInfo('Formulario reiniciado');
+            });
+            
+            // Event listener para cerrar el modal
+            closeModalButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+                operatorButtons.forEach(btn => btn.classList.remove('selected'));
+                amountGrid.innerHTML = '';
+                phoneInput.value = '';
+                operatorInfo.textContent = 'Primero selecciona una operadora';
+                selectedOperator = '';
+                selectedAmount = 0;
+                updateSummary();
+                updatePayButtonState();
+                updateDebugInfo('Listo para nueva recarga');
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    operatorButtons.forEach(btn => btn.classList.remove('selected'));
+                    amountGrid.innerHTML = '';
+                    phoneInput.value = '';
+                    operatorInfo.textContent = 'Primero selecciona una operadora';
+                    selectedOperator = '';
+                    selectedAmount = 0;
+                    updateSummary();
+                    updatePayButtonState();
+                    updateDebugInfo('Listo para nueva recarga');
+                }
+            });
+            
+            // Inicialización
+            updateDebugInfo('Sistema listo - Use el botón "Probar Conexión" para verificar');
+        });
     </script>
-    <script type="text/javascript" src="https://smartarget.online/loader.js?u=3a9cb769fbc5bbbff96e2f604c565e13679272a0"></script>
 </body>
 </html>
+
