@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Recargas</title>
     <style>
-        /* [MANTENER TODOS LOS ESTILOS EXISTENTES] */
         * {
             margin: 0;
             padding: 0;
@@ -19,36 +18,38 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
         
         .container {
             width: 100%;
             max-width: 450px;
             background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(135deg, #00a2e8, #005bea);
+            background: linear-gradient(135deg, #00aae0, #0077b3);
             color: white;
-            padding: 25px;
+            padding: 25px 20px;
             text-align: center;
         }
         
         .header h1 {
-            font-size: 28px;
+            font-size: 26px;
             margin-bottom: 5px;
+            font-weight: 600;
         }
         
         .header p {
             opacity: 0.9;
+            font-size: 15px;
         }
         
         .content {
-            padding: 25px;
+            padding: 20px;
         }
         
         .section {
@@ -56,7 +57,7 @@
         }
         
         .section h2 {
-            font-size: 18px;
+            font-size: 17px;
             color: #333;
             margin-bottom: 15px;
             border-bottom: 1px solid #eee;
@@ -65,87 +66,97 @@
         
         .operator-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             margin-bottom: 20px;
+            flex-wrap: wrap;
         }
         
         .operator-btn {
             flex: 1;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            min-width: 100px;
+            padding: 14px 10px;
+            border: 2px solid transparent;
+            border-radius: 10px;
             text-align: center;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 14px;
         }
         
         .operator-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .operator-btn.movistar {
-            background-color: #f0f9ff;
-            border-color: #00a2e8;
-            color: #00a2e8;
+            background-color: rgba(0, 170, 224, 0.1);
+            border-color: #00aae0;
+            color: #00aae0;
         }
         
         .operator-btn.movilnet {
-            background-color: #fff0f0;
-            border-color: #e80000;
-            color: #e80000;
+            background-color: rgba(255, 88, 95, 0.1);
+            border-color: #ff585f;
+            color: #ff585f;
         }
         
         .operator-btn.digitel {
-            background-color: #f0fff0;
-            border-color: #00a200;
-            color: #00a200;
+            background-color: rgba(220, 1, 42, 0.1);
+            border-color: #dc012a;
+            color: #dc012a;
         }
         
         .operator-btn.selected {
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
         
         .operator-btn.movistar.selected {
-            background-color: #00a2e8;
+            background-color: #00aae0;
+            border-color: #00aae0;
         }
         
         .operator-btn.movilnet.selected {
-            background-color: #e80000;
+            background-color: #ff585f;
+            border-color: #ff585f;
         }
         
         .operator-btn.digitel.selected {
-            background-color: #00a200;
+            background-color: #dc012a;
+            border-color: #dc012a;
         }
         
-        .amount-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+        .amount-select-container {
             margin-bottom: 20px;
         }
         
-        .amount-btn {
-            background-color: #f8f8f8;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .amount-select {
+            width: 100%;
+            padding: 14px 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: white;
+            transition: border-color 0.3s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
         }
         
-        .amount-btn:hover {
-            background-color: #e8f6ff;
-            border-color: #00a2e8;
+        .amount-select:focus {
+            outline: none;
+            border-color: #00aae0;
+            box-shadow: 0 0 0 2px rgba(0, 170, 224, 0.1);
         }
         
-        .amount-btn.selected {
-            background-color: #00a2e8;
-            color: white;
-            border-color: #00a2e8;
+        .amount-select:disabled {
+            background-color: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
         }
         
         .input-group {
@@ -157,26 +168,27 @@
             margin-bottom: 8px;
             font-weight: 500;
             color: #555;
+            font-size: 15px;
         }
         
-        .input-group input {
-            width: 100%;
-            padding: 15px;
+        .input-group input, .input-group select {
+            padding: 14px 12px;
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             transition: border-color 0.3s ease;
+            width: 100%;
         }
         
-        .input-group input:focus {
+        .input-group input:focus, .input-group select:focus {
             outline: none;
-            border-color: #00a2e8;
-            box-shadow: 0 0 0 2px rgba(0, 162, 232, 0.1);
+            border-color: #00aae0;
+            box-shadow: 0 0 0 2px rgba(0, 170, 224, 0.1);
         }
         
         .input-group .error {
             color: #e74c3c;
-            font-size: 14px;
+            font-size: 13px;
             margin-top: 5px;
             display: none;
         }
@@ -185,10 +197,27 @@
             display: block;
         }
         
+        .phone-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .phone-prefix {
+            width: 90px;
+            flex-shrink: 0;
+        }
+        
+        .phone-number {
+            flex: 1;
+            min-width: 0; /* Permite que se ajuste correctamente */
+        }
+
+        
         .summary {
             background-color: #f9f9f9;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 20px;
         }
         
@@ -211,27 +240,41 @@
         
         .actions {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
         
+        @media (min-width: 380px) {
+            .actions {
+                flex-direction: row;
+            }
+        }
+        
         .btn {
-            flex: 1;
             padding: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        @media (min-width: 380px) {
+            .btn {
+                width: auto;
+                flex: 1;
+            }
         }
         
         .btn-primary {
-            background-color: #00a2e8;
+            background-color: #00aae0;
             color: white;
         }
         
         .btn-primary:hover {
-            background-color: #0088c6;
+            background-color: #0088b3;
             transform: translateY(-2px);
         }
         
@@ -261,16 +304,19 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            padding: 15px;
         }
         
         .modal-content {
             background-color: white;
-            border-radius: 10px;
-            width: 90%;
+            border-radius: 12px;
+            width: 100%;
             max-width: 400px;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .logo {
@@ -286,17 +332,17 @@
         }
         
         .logo.movistar {
-            background-color: #00a2e8;
+            background-color: #00aae0;
             color: white;
         }
         
         .logo.movilnet {
-            background-color: #e80000;
+            background-color: #ff585f;
             color: white;
         }
         
         .logo.digitel {
-            background-color: #00a200;
+            background-color: #dc012a;
             color: white;
         }
         
@@ -309,11 +355,12 @@
         .modal h2 {
             color: #333;
             margin-bottom: 20px;
+            font-size: 22px;
         }
         
         .transaction-details {
             background-color: #f9f9f9;
-            padding: 20px;
+            padding: 18px;
             border-radius: 8px;
             margin: 20px 0;
             text-align: left;
@@ -323,6 +370,7 @@
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
+            font-size: 15px;
         }
         
         .transaction-details .label {
@@ -335,19 +383,20 @@
         }
         
         .close-btn {
-            background-color: #00a2e8;
+            background-color: #00aae0;
             color: white;
             border: none;
             padding: 14px 30px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
             transition: all 0.3s ease;
+            width: 100%;
         }
         
         .close-btn:hover {
-            background-color: #0088c6;
+            background-color: #0088b3;
             transform: translateY(-2px);
         }
         
@@ -359,7 +408,7 @@
         
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #00a2e8;
+            border-top: 4px solid #00aae0;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -377,6 +426,7 @@
             margin-bottom: 15px;
             font-weight: 500;
             color: #666;
+            font-size: 15px;
         }
         
         .cedula-info {
@@ -385,14 +435,29 @@
             margin-top: 5px;
         }
         
-        .debug-info {
-            background: #f8f8f8;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
+        .phone-info {
             font-size: 12px;
-            color: #666;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        /* Mejoras de responsive para pantallas muy pequeñas */
+        @media (max-width: 350px) {
+            .content {
+                padding: 15px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .operator-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -404,11 +469,6 @@
         </div>
         
         <div class="content">
-            <!-- Debug info -->
-            <div class="debug-info" id="debug-info">
-                <strong>Estado:</strong> <span id="debug-status">Listo</span>
-            </div>
-            
             <div class="section">
                 <h2>Selecciona Operadora</h2>
                 <div class="operator-buttons">
@@ -423,8 +483,10 @@
                 <div class="operator-info" id="operator-info">
                     Primero selecciona una operadora
                 </div>
-                <div class="amount-grid" id="amount-grid">
-                    <!-- Los montos se cargarán aquí automáticamente -->
+                <div class="amount-select-container">
+                    <select id="amount-select" class="amount-select" required disabled>
+                        <option value="">Seleccione el monto deseado</option>
+                    </select>
                 </div>
             </div>
             
@@ -437,8 +499,15 @@
                     <div class="error" id="cedula-error">La cédula debe tener entre 5 y 8 dígitos, opcionalmente precedida por V, E o J.</div>
                 </div>
                 <div class="input-group">
-                    <label for="phone">Número de teléfono *</label>
-                    <input type="tel" id="phone" placeholder="Ej: 04141234567" maxlength="11" required>
+                    <label for="phone-prefix">Número de teléfono *</label>
+                    <div class="phone-container">
+                        <select id="phone-prefix" class="phone-prefix" required disabled>
+                            <option value="">Código</option>
+                        </select>
+                        <input type="tel" id="phone-number" class="phone-number" placeholder="1234567" maxlength="7" required disabled>
+                    </div>
+                    <div class="phone-info">Primero selecciona una operadora para habilitar el número</div>
+                    <div class="error" id="phone-error">El número de teléfono debe tener 7 dígitos.</div>
                 </div>
             </div>
             
@@ -448,12 +517,8 @@
                     <span id="summary-operator">-</span>
                 </div>
                 <div class="summary-row">
-                    <span>Recarga:</span>
+                    <span>Monto de recarga:</span>
                     <span id="recharge-amount">0.00 Bs</span>
-                </div>
-                <div class="summary-row">
-                    <span>Servicio (2%):</span>
-                    <span id="service-fee">0.00 Bs</span>
                 </div>
                 <div class="summary-row total">
                     <span>Total a pagar:</span>
@@ -469,7 +534,6 @@
             <div class="actions">
                 <button class="btn btn-primary" id="pay-btn" disabled>Pagar Recarga</button>
                 <button class="btn btn-secondary" id="cancel-btn">Cancelar</button>
-                <button class="btn" id="test-btn" style="background-color: #ff9800; color: white;">Probar Conexión</button>
             </div>
         </div>
     </div>
@@ -518,7 +582,7 @@
 
     <script>
         // =============================================
-        // CONFIGURACIÓN - VERIFICAR ESTA URL
+        // CONFIGURACIÓN - URL DE GOOGLE APPS SCRIPT
         // =============================================
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyj5DeZCgkHeI9dbpe518qTLoRhErPDDKamZjZvC8S8z0xZ9BegFk_JpSVrL0jJ4sUOw/exec';
         
@@ -531,21 +595,30 @@
             'Digitel': [120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320]
         };
 
+        // =============================================
+        // PREFIJOS POR OPERADORA
+        // =============================================
+        const prefijosPorOperadora = {
+            'Movistar': ['0414', '0424'],
+            'Movilnet': ['0416', '0426'],
+            'Digitel': ['0412', '0422']
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos del DOM
             const operatorButtons = document.querySelectorAll('.operator-btn');
-            const amountGrid = document.getElementById('amount-grid');
+            const amountSelect = document.getElementById('amount-select');
             const operatorInfo = document.getElementById('operator-info');
             const cedulaInput = document.getElementById('cedula');
             const cedulaError = document.getElementById('cedula-error');
-            const phoneInput = document.getElementById('phone');
+            const phonePrefixSelect = document.getElementById('phone-prefix');
+            const phoneNumberInput = document.getElementById('phone-number');
+            const phoneError = document.getElementById('phone-error');
             const summaryOperator = document.getElementById('summary-operator');
             const rechargeAmount = document.getElementById('recharge-amount');
-            const serviceFee = document.getElementById('service-fee');
             const totalAmount = document.getElementById('total-amount');
             const payButton = document.getElementById('pay-btn');
             const cancelButton = document.getElementById('cancel-btn');
-            const testButton = document.getElementById('test-btn');
             const modal = document.getElementById('confirmation-modal');
             const closeModalButton = document.getElementById('close-modal');
             const modalLogo = document.getElementById('modal-logo');
@@ -557,23 +630,12 @@
             const transactionTime = document.getElementById('transaction-time');
             const transactionAmount = document.getElementById('transaction-amount');
             const loading = document.getElementById('loading');
-            const debugStatus = document.getElementById('debug-status');
             
             // Variables de estado
             let selectedOperator = '';
             let selectedAmount = 0;
             let isCedulaValid = false;
-
-            // Función para actualizar debug info
-            function updateDebugInfo(message, type = 'info') {
-                debugStatus.textContent = message;
-                const debugInfo = document.getElementById('debug-info');
-                debugInfo.style.backgroundColor = type === 'error' ? '#ffebee' : 
-                                                type === 'success' ? '#e8f5e8' : '#f8f8f8';
-                debugInfo.style.borderColor = type === 'error' ? '#f44336' : 
-                                            type === 'success' ? '#4caf50' : '#ddd';
-                console.log('🔧 DEBUG:', message);
-            }
+            let isPhoneValid = false;
 
             // Cargar cédula del almacenamiento local al iniciar
             const savedCedula = localStorage.getItem('cedulaRecargas');
@@ -601,55 +663,70 @@
                 }
             }
             
+            // Función para validar número de teléfono
+            function validatePhone() {
+                const prefix = phonePrefixSelect.value;
+                const number = phoneNumberInput.value.trim();
+                const phoneRegex = /^\d{7}$/;
+                
+                if (prefix && phoneRegex.test(number)) {
+                    phoneError.classList.remove('show');
+                    isPhoneValid = true;
+                    updatePayButtonState();
+                    return true;
+                } else {
+                    phoneError.classList.add('show');
+                    isPhoneValid = false;
+                    updatePayButtonState();
+                    return false;
+                }
+            }
+            
             // Función para actualizar estado del botón de pago
             function updatePayButtonState() {
-                if (selectedOperator && selectedAmount > 0 && isCedulaValid && phoneInput.value.trim()) {
+                if (selectedOperator && selectedAmount > 0 && isCedulaValid && isPhoneValid) {
                     payButton.disabled = false;
                 } else {
                     payButton.disabled = true;
                 }
             }
             
-            // Función para mostrar los botones de monto
-            function displayMontos(operator) {
-                console.log('🔄 Cargando montos para:', operator);
-                updateDebugInfo(`Cargando montos para ${operator}...`);
+            // Función para cargar prefijos según operadora
+            function loadPrefijos(operator) {
+                const prefijos = prefijosPorOperadora[operator] || [];
+                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
                 
-                const montos = montosPorOperadora[operator] || [100, 200, 300];
-                amountGrid.innerHTML = '';
-                
-                montos.forEach(monto => {
-                    const amountBtn = document.createElement('div');
-                    amountBtn.className = 'amount-btn';
-                    amountBtn.textContent = `${monto}.00 Bs`;
-                    amountBtn.setAttribute('data-amount', monto);
-                    
-                    amountBtn.addEventListener('click', function() {
-                        document.querySelectorAll('.amount-btn').forEach(btn => {
-                            btn.classList.remove('selected');
-                        });
-                        this.classList.add('selected');
-                        selectedAmount = parseFloat(this.getAttribute('data-amount'));
-                        updateSummary();
-                        updatePayButtonState();
-                        updateDebugInfo(`${operator} - Monto seleccionado: ${monto} Bs`);
-                    });
-                    
-                    amountGrid.appendChild(amountBtn);
+                prefijos.forEach(prefijo => {
+                    const option = document.createElement('option');
+                    option.value = prefijo;
+                    option.textContent = prefijo;
+                    phonePrefixSelect.appendChild(option);
                 });
                 
-                updateDebugInfo(`${operator} - ${montos.length} montos cargados`, 'success');
+                // Habilitar los campos de teléfono
+                phonePrefixSelect.disabled = false;
+                phoneNumberInput.disabled = false;
             }
             
-            // FUNCIÓN MEJORADA: Enviar datos a Google Sheets
-            async function saveToGoogleSheets(data) {
-                updateDebugInfo('Enviando datos a Google Sheets...');
+            // Función para mostrar los montos en el select
+            function displayMontos(operator) {
+                const montos = montosPorOperadora[operator] || [];
+                amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
                 
+                montos.forEach(monto => {
+                    const option = document.createElement('option');
+                    option.value = monto;
+                    option.textContent = `${monto}.00 Bs`;
+                    amountSelect.appendChild(option);
+                });
+                
+                // Habilitar el select de montos
+                amountSelect.disabled = false;
+            }
+            
+            // Función para enviar datos a Google Sheets
+            async function saveToGoogleSheets(data) {
                 try {
-                    console.log('📤 Enviando datos:', data);
-                    console.log('🔗 URL:', GOOGLE_SCRIPT_URL);
-                    
-                    // Agregar timestamp para evitar cache
                     const url = GOOGLE_SCRIPT_URL + '?timestamp=' + Date.now();
                     
                     const response = await fetch(url, {
@@ -657,53 +734,19 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        mode: 'no-cors', // ← IMPORTANTE: Esto puede ayudar con CORS
+                        mode: 'no-cors',
                         body: JSON.stringify(data)
                     });
                     
-                    console.log('📨 Respuesta recibida:', response);
-                    
                     // Con 'no-cors', no podemos leer la respuesta, pero sabemos que se envió
-                    updateDebugInfo('Datos enviados exitosamente', 'success');
-                    
-                    // Simulamos una respuesta exitosa ya que no podemos leerla con 'no-cors'
                     return {
                         status: 'success',
                         message: 'Datos guardados correctamente'
                     };
                     
                 } catch (error) {
-                    console.error('❌ Error completo:', error);
-                    updateDebugInfo(`Error: ${error.message}`, 'error');
+                    console.error('Error al enviar datos:', error);
                     throw error;
-                }
-            }
-            
-            // Función para probar conexión
-            async function testConexion() {
-                updateDebugInfo('Probando conexión con Google Apps Script...');
-                loading.style.display = 'block';
-                
-                try {
-                    const testData = {
-                        cedula: 'V12345678',
-                        operadora: 'TEST',
-                        numero: '04140000000',
-                        monto: '100.00',
-                        operacion: '99999999',
-                        fecha: new Date().toLocaleDateString('es-ES'),
-                        hora: new Date().toLocaleTimeString('es-ES')
-                    };
-                    
-                    const result = await saveToGoogleSheets(testData);
-                    updateDebugInfo('✅ Prueba de conexión EXITOSA', 'success');
-                    alert('✅ Conexión exitosa! Los datos de prueba se enviaron correctamente.');
-                    
-                } catch (error) {
-                    updateDebugInfo('❌ Prueba de conexión FALLIDA', 'error');
-                    alert('❌ Error en la conexión: ' + error.message);
-                } finally {
-                    loading.style.display = 'none';
                 }
             }
             
@@ -720,19 +763,13 @@
                 return { date, time };
             }
             
-            // Función para calcular el porcentaje de servicio (2%)
-            function calculateServiceFee(amount) {
-                return amount * 0.02;
-            }
-            
-            // Función para actualizar el resumen
+            // Función para actualizar el resumen (SIN COMISIÓN)
             function updateSummary() {
-                const fee = calculateServiceFee(selectedAmount);
-                const total = selectedAmount + fee;
+                // El total es igual al monto de recarga (sin comisión)
+                const total = selectedAmount;
                 
                 summaryOperator.textContent = selectedOperator;
                 rechargeAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
-                serviceFee.textContent = fee.toFixed(2) + ' Bs';
                 totalAmount.textContent = total.toFixed(2) + ' Bs';
             }
             
@@ -750,8 +787,17 @@
                     updateSummary();
                     updatePayButtonState();
                     
+                    // Cargar prefijos y montos para esta operadora
+                    loadPrefijos(selectedOperator);
                     displayMontos(selectedOperator);
                 });
+            });
+            
+            // Event listener para el select de montos
+            amountSelect.addEventListener('change', function() {
+                selectedAmount = parseFloat(this.value) || 0;
+                updateSummary();
+                updatePayButtonState();
             });
             
             // Event listeners para validación en tiempo real
@@ -760,12 +806,15 @@
                 validateCedula();
             });
             
-            phoneInput.addEventListener('input', function() {
-                updatePayButtonState();
+            phonePrefixSelect.addEventListener('change', function() {
+                validatePhone();
             });
             
-            // Event listener para el botón de prueba
-            testButton.addEventListener('click', testConexion);
+            phoneNumberInput.addEventListener('input', function() {
+                // Solo permitir números
+                this.value = this.value.replace(/\D/g, '');
+                validatePhone();
+            });
             
             // Event listener para el botón de pagar
             payButton.addEventListener('click', async function() {
@@ -784,30 +833,30 @@
                     return;
                 }
                 
-                if (!phoneInput.value.trim()) {
-                    alert('Por favor, ingresa un número de teléfono.');
+                if (!validatePhone()) {
+                    alert('Por favor, ingresa un número de teléfono válido.');
                     return;
                 }
                 
                 loading.style.display = 'block';
                 payButton.disabled = true;
-                updateDebugInfo('Procesando recarga...');
                 
                 try {
                     const operationNum = generateOperationNumber();
                     const { date, time } = getCurrentDateTime();
                     
+                    // Combinar prefijo y número en un solo campo
+                    const numeroCompleto = phonePrefixSelect.value + phoneNumberInput.value;
+                    
                     const formData = {
                         cedula: cedulaInput.value.toUpperCase(),
                         operadora: selectedOperator,
-                        numero: phoneInput.value,
+                        numero: numeroCompleto,
                         monto: selectedAmount.toFixed(2),
                         operacion: operationNum.toString(),
                         fecha: date,
                         hora: time
                     };
-                    
-                    console.log('📝 Datos a enviar:', formData);
                     
                     const result = await saveToGoogleSheets(formData);
                     
@@ -816,21 +865,19 @@
                         modalLogo.className = `logo ${selectedOperator.toLowerCase()}`;
                         modalOperator.textContent = selectedOperator;
                         modalCedula.textContent = cedulaInput.value.toUpperCase();
-                        modalPhone.textContent = phoneInput.value;
+                        modalPhone.textContent = numeroCompleto;
                         operationNumber.textContent = operationNum;
                         transactionDate.textContent = date;
                         transactionTime.textContent = time;
                         transactionAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
                         
                         modal.style.display = 'flex';
-                        updateDebugInfo('✅ Recarga procesada exitosamente', 'success');
                     } else {
                         throw new Error(result.message);
                     }
                     
                 } catch (error) {
-                    console.error('❌ Error en el proceso:', error);
-                    updateDebugInfo(`❌ Error: ${error.message}`, 'error');
+                    console.error('Error en el proceso:', error);
                     alert('Error de conexión. Los datos no se guardaron.\n\nDetalle: ' + error.message);
                 } finally {
                     loading.style.display = 'none';
@@ -841,47 +888,56 @@
             // Event listener para el botón de cancelar
             cancelButton.addEventListener('click', function() {
                 operatorButtons.forEach(btn => btn.classList.remove('selected'));
-                amountGrid.innerHTML = '';
-                phoneInput.value = '';
+                amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
+                amountSelect.disabled = true;
+                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                phonePrefixSelect.disabled = true;
+                phoneNumberInput.value = '';
+                phoneNumberInput.disabled = true;
                 operatorInfo.textContent = 'Primero selecciona una operadora';
                 selectedOperator = '';
                 selectedAmount = 0;
+                isPhoneValid = false;
                 updateSummary();
                 updatePayButtonState();
-                updateDebugInfo('Formulario reiniciado');
             });
             
             // Event listener para cerrar el modal
             closeModalButton.addEventListener('click', function() {
                 modal.style.display = 'none';
                 operatorButtons.forEach(btn => btn.classList.remove('selected'));
-                amountGrid.innerHTML = '';
-                phoneInput.value = '';
+                amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
+                amountSelect.disabled = true;
+                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                phonePrefixSelect.disabled = true;
+                phoneNumberInput.value = '';
+                phoneNumberInput.disabled = true;
                 operatorInfo.textContent = 'Primero selecciona una operadora';
                 selectedOperator = '';
                 selectedAmount = 0;
+                isPhoneValid = false;
                 updateSummary();
                 updatePayButtonState();
-                updateDebugInfo('Listo para nueva recarga');
             });
             
             window.addEventListener('click', function(event) {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                     operatorButtons.forEach(btn => btn.classList.remove('selected'));
-                    amountGrid.innerHTML = '';
-                    phoneInput.value = '';
+                    amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
+                    amountSelect.disabled = true;
+                    phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                    phonePrefixSelect.disabled = true;
+                    phoneNumberInput.value = '';
+                    phoneNumberInput.disabled = true;
                     operatorInfo.textContent = 'Primero selecciona una operadora';
                     selectedOperator = '';
                     selectedAmount = 0;
+                    isPhoneValid = false;
                     updateSummary();
                     updatePayButtonState();
-                    updateDebugInfo('Listo para nueva recarga');
                 }
             });
-            
-            // Inicialización
-            updateDebugInfo('Sistema listo - Use el botón "Probar Conexión" para verificar');
         });
     </script>
 </body>
