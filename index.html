@@ -28,6 +28,31 @@
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            position: relative;
+        }
+        
+        .close-btn-top {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .close-btn-top:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
         }
         
         .header {
@@ -35,6 +60,7 @@
             color: white;
             padding: 25px 20px;
             text-align: center;
+            position: relative;
         }
         
         .header h1 {
@@ -197,7 +223,7 @@
             display: block;
         }
         
-        .phone-group {
+        .phone-container {
             display: flex;
             gap: 8px;
             align-items: center;
@@ -463,6 +489,7 @@
 </head>
 <body>
     <div class="container">
+        <button class="close-btn-top" id="close-window">×</button>
         <div class="header">
             <h1>Sistema de Recargas</h1>
             <p>Selecciona tu operadora y recarga</p>
@@ -591,7 +618,7 @@
         // =============================================
         const montosPorOperadora = {
             'Movistar': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200],
-            'Movilnet': [150, 180, 270, 360, 450, 540, 630, 720, 810, 900, 990, 1080],
+            'Movilnet': [150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500, 1650, 1800],
             'Digitel': [120, 240, 360, 480, 600, 720, 840, 960, 1080, 1200, 1320]
         };
 
@@ -630,6 +657,7 @@
             const transactionTime = document.getElementById('transaction-time');
             const transactionAmount = document.getElementById('transaction-amount');
             const loading = document.getElementById('loading');
+            const closeWindowBtn = document.getElementById('close-window');
             
             // Variables de estado
             let selectedOperator = '';
@@ -642,6 +670,17 @@
             if (savedCedula) {
                 cedulaInput.value = savedCedula;
                 validateCedula();
+            }
+            
+            // Función para redirigir o cerrar la ventana
+            function redirectOrClose() {
+                // Intentar cerrar la ventana si fue abierta con window.open
+                if (window.opener) {
+                    window.close();
+                } else {
+                    // Redireccionar a la URL especificada
+                    window.location.href = 'https://www.vendeygana.net/user/';
+                }
             }
             
             // Función para validar cédula
@@ -887,19 +926,12 @@
             
             // Event listener para el botón de cancelar
             cancelButton.addEventListener('click', function() {
-                operatorButtons.forEach(btn => btn.classList.remove('selected'));
-                amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
-                amountSelect.disabled = true;
-                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
-                phonePrefixSelect.disabled = true;
-                phoneNumberInput.value = '';
-                phoneNumberInput.disabled = true;
-                operatorInfo.textContent = 'Primero selecciona una operadora';
-                selectedOperator = '';
-                selectedAmount = 0;
-                isPhoneValid = false;
-                updateSummary();
-                updatePayButtonState();
+                redirectOrClose();
+            });
+            
+            // Event listener para el botón de cerrar en la parte superior
+            closeWindowBtn.addEventListener('click', function() {
+                redirectOrClose();
             });
             
             // Event listener para cerrar el modal
