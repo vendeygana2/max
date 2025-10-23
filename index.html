@@ -21,6 +21,228 @@
             padding: 15px;
         }
         
+        /* Estilos para la ventana emergente de promoción */
+        .promo-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 15px;
+        }
+        
+        .promo-content {
+            background: linear-gradient(135deg, #ff9a00, #ff5e00);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .promo-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .promo-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .promo-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .promo-subtitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .promo-text {
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .promo-highlight {
+            font-weight: 700;
+            font-size: 18px;
+            text-decoration: underline;
+            margin: 10px 0;
+        }
+        
+        .promo-btn {
+            background-color: white;
+            color: #ff5e00;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .promo-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Nueva ventana emergente para mensajes personalizados */
+        .message-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2001;
+            padding: 15px;
+        }
+        
+        .message-content {
+            background: linear-gradient(135deg, #ed7318, #d45c0a);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .message-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .message-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .message-title {
+            font-size: 26px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.3;
+        }
+        
+        .message-subtitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .message-text {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .message-highlight {
+            font-weight: 700;
+            font-size: 20px;
+            text-decoration: underline;
+            margin: 10px 0;
+        }
+        
+        .message-btn {
+            background-color: white;
+            color: #ed7318;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
         .container {
             width: 100%;
             max-width: 450px;
@@ -56,7 +278,7 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #00aae0, #0077b3);
+            background: linear-gradient(135deg, #ed7318, #d45c0a);
             color: white;
             padding: 25px 20px;
             text-align: center;
@@ -175,8 +397,8 @@
         
         .amount-select:focus {
             outline: none;
-            border-color: #00aae0;
-            box-shadow: 0 0 0 2px rgba(0, 170, 224, 0.1);
+            border-color: #ed7318;
+            box-shadow: 0 0 0 2px rgba(237, 115, 24, 0.1);
         }
         
         .amount-select:disabled {
@@ -208,8 +430,8 @@
         
         .input-group input:focus, .input-group select:focus {
             outline: none;
-            border-color: #00aae0;
-            box-shadow: 0 0 0 2px rgba(0, 170, 224, 0.1);
+            border-color: #ed7318;
+            box-shadow: 0 0 0 2px rgba(237, 115, 24, 0.1);
         }
         
         .input-group .error {
@@ -223,20 +445,18 @@
             display: block;
         }
         
-        .phone-group {
+        .phone-container {
             display: flex;
-            gap: 8px;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
         }
         
         .phone-prefix {
-            width: 90px;
-            flex-shrink: 0;
+            width: 100%;
         }
         
         .phone-number {
-            flex: 1;
-            min-width: 0; /* Permite que se ajuste correctamente */
+            width: 100%;
         }
         
         .summary {
@@ -294,12 +514,12 @@
         }
         
         .btn-primary {
-            background-color: #00aae0;
+            background-color: #ed7318;
             color: white;
         }
         
         .btn-primary:hover {
-            background-color: #0088b3;
+            background-color: #d45c0a;
             transform: translateY(-2px);
         }
         
@@ -316,6 +536,21 @@
         
         .btn-secondary:hover {
             background-color: #e0e0e0;
+        }
+        
+        .btn-copy {
+            background-color: #4CAF50;
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .btn-copy:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .btn-copy:active {
+            transform: translateY(0);
         }
         
         .modal {
@@ -344,31 +579,25 @@
             overflow-y: auto;
         }
         
-        .logo {
-            width: 120px;
-            height: 60px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .operator-name {
+            font-size: 24px;
             font-weight: bold;
-            font-size: 20px;
+            margin-bottom: 15px;
+            padding: 10px;
             border-radius: 8px;
+            color: white;
         }
         
-        .logo.movistar {
+        .operator-name.movistar {
             background-color: #00aae0;
-            color: white;
         }
         
-        .logo.movilnet {
+        .operator-name.movilnet {
             background-color: #ff585f;
-            color: white;
         }
         
-        .logo.digitel {
+        .operator-name.digitel {
             background-color: #dc012a;
-            color: white;
         }
         
         .success-icon {
@@ -408,7 +637,7 @@
         }
         
         .close-btn {
-            background-color: #00aae0;
+            background-color: #ed7318;
             color: white;
             border: none;
             padding: 14px 30px;
@@ -421,7 +650,7 @@
         }
         
         .close-btn:hover {
-            background-color: #0088b3;
+            background-color: #d45c0a;
             transform: translateY(-2px);
         }
         
@@ -433,7 +662,7 @@
         
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #00aae0;
+            border-top: 4px solid #ed7318;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -466,6 +695,41 @@
             margin-top: 5px;
         }
         
+        .negocio-info {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .sms-notification {
+            background-color: #e8f4fd;
+            border-left: 4px solid #ed7318;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            z-index: 3000;
+            display: none;
+            font-weight: 500;
+            text-align: center;
+            max-width: 300px;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+        
         /* Mejoras de responsive para pantallas muy pequeñas */
         @media (max-width: 350px) {
             .content {
@@ -483,10 +747,98 @@
             .operator-buttons {
                 flex-direction: column;
             }
+            
+            .promo-title {
+                font-size: 24px;
+            }
+            
+            .promo-subtitle {
+                font-size: 18px;
+            }
+            
+            .copy-notification {
+                max-width: 250px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .message-title {
+                font-size: 22px;
+            }
+            
+            .message-text {
+                font-size: 16px;
+            }
+        }
+        
+        /* Ajustes para pantallas más grandes */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 500px;
+            }
+            
+            .header h1 {
+                font-size: 28px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .section h2 {
+                font-size: 18px;
+            }
+            
+            .operator-btn {
+                font-size: 15px;
+                padding: 16px 10px;
+            }
+        }
+        
+        /* Ajustes para pantallas muy grandes */
+        @media (min-width: 1200px) {
+            body {
+                padding: 30px;
+            }
+            
+            .container {
+                max-width: 500px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Nueva ventana emergente para mensajes personalizados -->
+    <div class="message-modal" id="message-modal">
+        <div class="message-content">
+            <button class="message-close-btn" id="message-close-btn">×</button>
+            <div class="message-icon">🚀</div>
+            <h1 class="message-title">AHORA PUEDES ENVIAR MENSAJE PERSONALIZADO CON TU NEGOCIO A TUS CLIENTES PARA PROMOCIONAR TUS RECARGAS</h1>
+            <div class="message-text">
+                <p>¡PRUEBALO, CRECEMOS CONTIGO!</p>
+            </div>
+            <button class="message-btn" id="message-accept-btn">¡Empezar Ahora!</button>
+        </div>
+    </div>
+
+    <!-- Ventana emergente de promoción -->
+    <div class="promo-modal" id="promo-modal">
+        <div class="promo-content">
+            <button class="promo-close-btn" id="promo-close-btn">×</button>
+            <div class="promo-icon">🎁</div>
+            <h1 class="promo-title">¡AHORA VENDE Y GANA TE PREMIA!</h1>
+            <h2 class="promo-subtitle">Al hacer tus recargas</h2>
+            <div class="promo-text">
+                <p>¡Cada recarga que realices te acerca a increíbles premios!</p>
+                <p class="promo-highlight">Puedes ganar:</p>
+                <p>📺 <strong>Cuentas de Streaming</strong> (Netflix, Disney+, HBO Max)</p>
+                <p>🎨 <strong>Licencias de Diseño</strong> (Adobe Creative Cloud, Canva Pro)</p>
+                <p>¡Y muchos premios más!</p>
+            </div>
+            <button class="promo-btn" id="promo-accept-btn">¡Empezar a Recargar!</button>
+        </div>
+    </div>
+    
     <div class="container">
         <button class="close-btn-top" id="close-window">×</button>
         <div class="header">
@@ -519,7 +871,12 @@
             <div class="section">
                 <h2>Datos de Recarga</h2>
                 <div class="input-group">
-                    <label for="cedula">Cédula del Afiliado a Vende y Gana *</label>
+                    <label for="negocio">Nombre de tu negocio (opcional)</label>
+                    <input type="text" id="negocio" placeholder="Ej: Mi Tienda Express" maxlength="50">
+                    <div class="negocio-info">Ingresa el nombre de tu negocio para personalizar el mensaje que enviarás a tu cliente</div>
+                </div>
+                <div class="input-group">
+                    <label for="cedula">Cédula de identidad *</label>
                     <input type="text" id="cedula" placeholder="Ej: V12345678" maxlength="9" required>
                     <div class="cedula-info">Formato: V, E o J seguido de 5-8 dígitos (máx. 9 caracteres)</div>
                     <div class="error" id="cedula-error">La cédula debe tener entre 5 y 8 dígitos, opcionalmente precedida por V, E o J.</div>
@@ -528,9 +885,9 @@
                     <label for="phone-prefix">Número de teléfono *</label>
                     <div class="phone-container">
                         <select id="phone-prefix" class="phone-prefix" required disabled>
-                            <option value="">Código</option>
+                            <option value="">Selecciona el código</option>
                         </select>
-                        <input type="tel" id="phone-number" class="phone-number" placeholder="1234567" maxlength="7" required disabled>
+                        <input type="tel" id="phone-number" class="phone-number" placeholder="Número de teléfono (7 dígitos)" maxlength="7" required disabled>
                     </div>
                     <div class="phone-info">Primero selecciona una operadora para habilitar el número</div>
                     <div class="error" id="phone-error">El número de teléfono debe tener 7 dígitos.</div>
@@ -567,18 +924,18 @@
     <!-- Modal de confirmación -->
     <div class="modal" id="confirmation-modal">
         <div class="modal-content">
-            <div class="logo" id="modal-logo">Movistar</div>
+            <div class="operator-name" id="modal-operator-name">-</div>
             <div class="success-icon">✓</div>
             <h2>RECARGA EXITOSA</h2>
+            
+            <div class="sms-notification" id="sms-notification">
+                Su operadora enviará un mensaje de texto como confirmación de la presente recarga.
+            </div>
             
             <div class="transaction-details">
                 <p>
                     <span class="label">Operadora:</span>
                     <span class="value" id="modal-operator">-</span>
-                </p>
-                <p>
-                    <span class="label">Cédula:</span>
-                    <span class="value" id="modal-cedula">-</span>
                 </p>
                 <p>
                     <span class="label">Número:</span>
@@ -602,8 +959,15 @@
                 </p>
             </div>
             
+            <button class="btn btn-copy" id="copy-btn">Copiar Comprobante</button>
             <button class="close-btn" id="close-modal">Aceptar</button>
         </div>
+    </div>
+    
+    <!-- Notificación de copiado -->
+    <div class="copy-notification" id="copy-notification">
+        <div>✅ Comprobante copiado con éxito</div>
+        <div style="font-size: 13px; margin-top: 5px; opacity: 0.9;">Ahora puede pegar y enviar a su cliente</div>
     </div>
 
     <script>
@@ -632,9 +996,16 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos del DOM
+            const messageModal = document.getElementById('message-modal');
+            const messageCloseBtn = document.getElementById('message-close-btn');
+            const messageAcceptBtn = document.getElementById('message-accept-btn');
+            const promoModal = document.getElementById('promo-modal');
+            const promoCloseBtn = document.getElementById('promo-close-btn');
+            const promoAcceptBtn = document.getElementById('promo-accept-btn');
             const operatorButtons = document.querySelectorAll('.operator-btn');
             const amountSelect = document.getElementById('amount-select');
             const operatorInfo = document.getElementById('operator-info');
+            const negocioInput = document.getElementById('negocio');
             const cedulaInput = document.getElementById('cedula');
             const cedulaError = document.getElementById('cedula-error');
             const phonePrefixSelect = document.getElementById('phone-prefix');
@@ -647,9 +1018,8 @@
             const cancelButton = document.getElementById('cancel-btn');
             const modal = document.getElementById('confirmation-modal');
             const closeModalButton = document.getElementById('close-modal');
-            const modalLogo = document.getElementById('modal-logo');
+            const modalOperatorName = document.getElementById('modal-operator-name');
             const modalOperator = document.getElementById('modal-operator');
-            const modalCedula = document.getElementById('modal-cedula');
             const modalPhone = document.getElementById('modal-phone');
             const operationNumber = document.getElementById('operation-number');
             const transactionDate = document.getElementById('transaction-date');
@@ -657,6 +1027,9 @@
             const transactionAmount = document.getElementById('transaction-amount');
             const loading = document.getElementById('loading');
             const closeWindowBtn = document.getElementById('close-window');
+            const smsNotification = document.getElementById('sms-notification');
+            const copyButton = document.getElementById('copy-btn');
+            const copyNotification = document.getElementById('copy-notification');
             
             // Variables de estado
             let selectedOperator = '';
@@ -664,7 +1037,17 @@
             let isCedulaValid = false;
             let isPhoneValid = false;
 
-            // Cargar cédula del almacenamiento local al iniciar
+            // Mostrar la ventana emergente de mensajes personalizados al cargar la página
+            setTimeout(function() {
+                messageModal.style.display = 'flex';
+            }, 500); // Mostrar después de 0.5 segundos
+
+            // Cargar datos del almacenamiento local al iniciar
+            const savedNegocio = localStorage.getItem('negocioRecargas');
+            if (savedNegocio) {
+                negocioInput.value = savedNegocio;
+            }
+            
             const savedCedula = localStorage.getItem('cedulaRecargas');
             if (savedCedula) {
                 cedulaInput.value = savedCedula;
@@ -732,7 +1115,7 @@
             // Función para cargar prefijos según operadora
             function loadPrefijos(operator) {
                 const prefijos = prefijosPorOperadora[operator] || [];
-                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                phonePrefixSelect.innerHTML = '<option value="">Selecciona el código</option>';
                 
                 prefijos.forEach(prefijo => {
                     const option = document.createElement('option');
@@ -760,6 +1143,12 @@
                 
                 // Habilitar el select de montos
                 amountSelect.disabled = false;
+            }
+            
+            // Función para cargar el nombre de la operadora en el modal
+            function loadOperatorName(operator) {
+                modalOperatorName.textContent = operator;
+                modalOperatorName.className = `operator-name ${operator.toLowerCase()}`;
             }
             
             // Función para enviar datos a Google Sheets
@@ -811,6 +1200,79 @@
                 totalAmount.textContent = total.toFixed(2) + ' Bs';
             }
             
+            // Función para copiar los datos del comprobante
+            function copyReceiptToClipboard() {
+                const negocio = negocioInput.value.trim();
+                const operator = modalOperator.textContent;
+                const phone = modalPhone.textContent;
+                const operation = operationNumber.textContent;
+                const date = transactionDate.textContent;
+                const time = transactionTime.textContent;
+                const amount = transactionAmount.textContent;
+                
+                let receiptText = `COMPROBANTE DE RECARGA
+                
+Operadora: ${operator}
+Número: ${phone}
+N° Operación: ${operation}
+Fecha: ${date}
+Hora: ${time}
+Monto: ${amount}
+
+¡Recarga exitosa! Su operadora enviará un mensaje de texto como confirmación.`;
+
+                // Agregar el nombre del negocio si se proporcionó
+                if (negocio) {
+                    receiptText += `\n\nRecarga realizada a través de: ${negocio}`;
+                    receiptText += `\n¡Gracias por confiar en ${negocio}!`;
+                } else {
+                    receiptText += `\n\nRecarga realizada a través de Vende y Gana`;
+                    receiptText += `\n¡Gracias por su preferencia!`;
+                }
+                
+                // Usar la API del portapapeles
+                navigator.clipboard.writeText(receiptText).then(function() {
+                    // Mostrar notificación de éxito
+                    copyNotification.style.display = 'block';
+                    setTimeout(function() {
+                        copyNotification.style.display = 'none';
+                    }, 4000); // Aumenté el tiempo a 4 segundos para mejor lectura
+                }).catch(function(err) {
+                    console.error('Error al copiar: ', err);
+                    // Fallback para navegadores antiguos
+                    const textArea = document.createElement('textarea');
+                    textArea.value = receiptText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Mostrar notificación de éxito
+                    copyNotification.style.display = 'block';
+                    setTimeout(function() {
+                        copyNotification.style.display = 'none';
+                    }, 4000);
+                });
+            }
+            
+            // Event listeners para la nueva ventana emergente de mensajes
+            messageCloseBtn.addEventListener('click', function() {
+                messageModal.style.display = 'none';
+            });
+            
+            messageAcceptBtn.addEventListener('click', function() {
+                messageModal.style.display = 'none';
+            });
+            
+            // Event listeners para la ventana emergente de promoción
+            promoCloseBtn.addEventListener('click', function() {
+                promoModal.style.display = 'none';
+            });
+            
+            promoAcceptBtn.addEventListener('click', function() {
+                promoModal.style.display = 'none';
+            });
+            
             // Event listeners para los botones de operadora
             operatorButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -839,6 +1301,11 @@
             });
             
             // Event listeners para validación en tiempo real
+            negocioInput.addEventListener('input', function() {
+                // Guardar en localStorage pero no es obligatorio
+                localStorage.setItem('negocioRecargas', this.value);
+            });
+            
             cedulaInput.addEventListener('input', function() {
                 this.value = this.value.toUpperCase();
                 validateCedula();
@@ -887,6 +1354,7 @@
                     const numeroCompleto = phonePrefixSelect.value + phoneNumberInput.value;
                     
                     const formData = {
+                        negocio: negocioInput.value || 'No especificado',
                         cedula: cedulaInput.value.toUpperCase(),
                         operadora: selectedOperator,
                         numero: numeroCompleto,
@@ -899,15 +1367,18 @@
                     const result = await saveToGoogleSheets(formData);
                     
                     if (result.status === 'success') {
-                        modalLogo.textContent = selectedOperator;
-                        modalLogo.className = `logo ${selectedOperator.toLowerCase()}`;
+                        // Cargar el nombre de la operadora
+                        loadOperatorName(selectedOperator);
+                        
                         modalOperator.textContent = selectedOperator;
-                        modalCedula.textContent = cedulaInput.value.toUpperCase();
                         modalPhone.textContent = numeroCompleto;
                         operationNumber.textContent = operationNum;
                         transactionDate.textContent = date;
                         transactionTime.textContent = time;
                         transactionAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
+                        
+                        // Mostrar notificación de SMS
+                        smsNotification.textContent = `Su operadora ${selectedOperator} enviará un mensaje de texto como confirmación de la presente recarga.`;
                         
                         modal.style.display = 'flex';
                     } else {
@@ -933,13 +1404,18 @@
                 redirectOrClose();
             });
             
+            // Event listener para el botón de copiar
+            copyButton.addEventListener('click', function() {
+                copyReceiptToClipboard();
+            });
+            
             // Event listener para cerrar el modal
             closeModalButton.addEventListener('click', function() {
                 modal.style.display = 'none';
                 operatorButtons.forEach(btn => btn.classList.remove('selected'));
                 amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
                 amountSelect.disabled = true;
-                phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                phonePrefixSelect.innerHTML = '<option value="">Selecciona el código</option>';
                 phonePrefixSelect.disabled = true;
                 phoneNumberInput.value = '';
                 phoneNumberInput.disabled = true;
@@ -957,7 +1433,7 @@
                     operatorButtons.forEach(btn => btn.classList.remove('selected'));
                     amountSelect.innerHTML = '<option value="">Seleccione el monto deseado</option>';
                     amountSelect.disabled = true;
-                    phonePrefixSelect.innerHTML = '<option value="">Código</option>';
+                    phonePrefixSelect.innerHTML = '<option value="">Selecciona el código</option>';
                     phonePrefixSelect.disabled = true;
                     phoneNumberInput.value = '';
                     phoneNumberInput.disabled = true;
@@ -973,4 +1449,3 @@
     </script>
 </body>
 </html>
-
