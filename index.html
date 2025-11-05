@@ -21,8 +21,8 @@
             padding: 15px;
         }
         
-        /* Estilos para la ventana emergente de promoción */
-        .promo-modal {
+        /* Estilos para la ventana emergente de información */
+        .info-modal {
             position: fixed;
             top: 0;
             left: 0;
@@ -36,8 +36,8 @@
             padding: 15px;
         }
         
-        .promo-content {
-            background: linear-gradient(135deg, #ff9a00, #ff5e00);
+        .info-content {
+            background: linear-gradient(135deg, #dc012a, #a0001e);
             border-radius: 15px;
             width: 100%;
             max-width: 500px;
@@ -49,7 +49,7 @@
             overflow: hidden;
         }
         
-        .promo-close-btn {
+        .info-close-btn {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -68,12 +68,12 @@
             z-index: 10;
         }
         
-        .promo-close-btn:hover {
+        .info-close-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
         }
         
-        .promo-icon {
+        .info-icon {
             font-size: 60px;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite;
@@ -85,20 +85,20 @@
             100% { transform: scale(1); }
         }
         
-        .promo-title {
+        .info-title {
             font-size: 28px;
             margin-bottom: 15px;
             font-weight: 700;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
         
-        .promo-subtitle {
+        .info-subtitle {
             font-size: 20px;
             margin-bottom: 20px;
             font-weight: 600;
         }
         
-        .promo-text {
+        .info-text {
             font-size: 16px;
             margin-bottom: 25px;
             line-height: 1.5;
@@ -107,16 +107,16 @@
             border-radius: 10px;
         }
         
-        .promo-highlight {
+        .info-highlight {
             font-weight: 700;
             font-size: 18px;
             text-decoration: underline;
             margin: 10px 0;
         }
         
-        .promo-btn {
+        .info-btn {
             background-color: white;
-            color: #ff5e00;
+            color: #dc012a;
             border: none;
             padding: 14px 30px;
             border-radius: 50px;
@@ -128,7 +128,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .promo-btn:hover {
+        .info-btn:hover {
             background-color: #f0f0f0;
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
@@ -639,11 +639,11 @@
                 flex-direction: column;
             }
             
-            .promo-title {
+            .info-title {
                 font-size: 24px;
             }
             
-            .promo-subtitle {
+            .info-subtitle {
                 font-size: 18px;
             }
             
@@ -691,21 +691,21 @@
     </style>
 </head>
 <body>
-    <!-- Ventana emergente de promoción -->
-    <div class="promo-modal" id="promo-modal">
-        <div class="promo-content">
-            <button class="promo-close-btn" id="promo-close-btn">×</button>
-            <div class="promo-icon">🎁</div>
-            <h1 class="promo-title">¡AHORA VENDE Y GANA TE PREMIA!</h1>
-            <h2 class="promo-subtitle">Al hacer tus recargas</h2>
-            <div class="promo-text">
-                <p>¡Cada recarga que realices te acerca a increíbles premios!</p>
-                <p class="promo-highlight">Puedes ganar:</p>
-                <p>📺 <strong>Cuentas de Streaming</strong> (Netflix, Disney+, HBO Max)</p>
-                <p>🎨 <strong>Licencias de Diseño</strong> (Adobe Creative Cloud, Canva Pro)</p>
-                <p>¡Y muchos premios más!</p>
+    <!-- Ventana emergente de información -->
+    <div class="info-modal" id="info-modal">
+        <div class="info-content">
+            <button class="info-close-btn" id="info-close-btn">×</button>
+            <div class="info-icon">⚠️</div>
+            <h1 class="info-title">INFORMACIÓN IMPORTANTE</h1>
+            <h2 class="info-subtitle">Digitel aumenta su recarga mínima</h2>
+            <div class="info-text">
+                <p>Se informa a todos nuestros usuarios que:</p>
+                <p class="info-highlight">Digitel ha aumentado su recarga mínima a 160 Bs</p>
+                <p>Los montos disponibles para Digitel ahora son:</p>
+                <p><strong>160, 320, 480, 640, 800, 960, 1120, 1280, 1440, 1600, 1760 Bs</strong></p>
+                <p>¡Tome sus previsiones al realizar recargas para esta operadora!</p>
             </div>
-            <button class="promo-btn" id="promo-accept-btn">¡Empezar a Recargar!</button>
+            <button class="info-btn" id="info-accept-btn">Entendido</button>
         </div>
     </div>
     
@@ -866,9 +866,9 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos del DOM
-            const promoModal = document.getElementById('promo-modal');
-            const promoCloseBtn = document.getElementById('promo-close-btn');
-            const promoAcceptBtn = document.getElementById('promo-accept-btn');
+            const infoModal = document.getElementById('info-modal');
+            const infoCloseBtn = document.getElementById('info-close-btn');
+            const infoAcceptBtn = document.getElementById('info-accept-btn');
             const operatorButtons = document.querySelectorAll('.operator-btn');
             const amountSelect = document.getElementById('amount-select');
             const operatorInfo = document.getElementById('operator-info');
@@ -904,9 +904,9 @@
             let isCedulaValid = false;
             let isPhoneValid = false;
 
-            // Mostrar la ventana emergente de promoción al cargar la página
+            // Mostrar la ventana emergente de información al cargar la página
             setTimeout(function() {
-                promoModal.style.display = 'flex';
+                infoModal.style.display = 'flex';
             }, 500); // Mostrar después de 0.5 segundos
 
             // Cargar datos del almacenamiento local al iniciar
@@ -1122,13 +1122,13 @@ Monto: ${amount}
                 });
             }
             
-            // Event listeners para la ventana emergente de promoción
-            promoCloseBtn.addEventListener('click', function() {
-                promoModal.style.display = 'none';
+            // Event listeners para la ventana emergente de información
+            infoCloseBtn.addEventListener('click', function() {
+                infoModal.style.display = 'none';
             });
             
-            promoAcceptBtn.addEventListener('click', function() {
-                promoModal.style.display = 'none';
+            infoAcceptBtn.addEventListener('click', function() {
+                infoModal.style.display = 'none';
             });
             
             // Event listeners para los botones de operadora
