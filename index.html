@@ -37,7 +37,7 @@
         }
         
         .info-content {
-            background: linear-gradient(135deg, #dc012a, #a0001e);
+            background: linear-gradient(135deg, #ed7318, #d45c0a);
             border-radius: 15px;
             width: 100%;
             max-width: 500px;
@@ -116,7 +116,7 @@
         
         .info-btn {
             background-color: white;
-            color: #dc012a;
+            color: #ed7318;
             border: none;
             padding: 14px 30px;
             border-radius: 50px;
@@ -695,15 +695,11 @@
     <div class="info-modal" id="info-modal">
         <div class="info-content">
             <button class="info-close-btn" id="info-close-btn">×</button>
-            <div class="info-icon">⚠️</div>
-            <h1 class="info-title">INFORMACIÓN IMPORTANTE</h1>
-            <h2 class="info-subtitle">Digitel aumenta su recarga mínima</h2>
+            <div class="info-icon">🙏</div>
+            <h1 class="info-title" id="saludo-dinamico">¡Bienvenido!</h1>
+            <h2 class="info-subtitle">BENDICIONES PARA TI Y LOS TUYOS Y TU NEGOCIO DE RECARGAS</h2>
             <div class="info-text">
-                <p>Se informa a todos nuestros usuarios que:</p>
-                <p class="info-highlight">Digitel ha aumentado su recarga mínima a 160 Bs</p>
-                <p>Los montos disponibles para Digitel ahora son:</p>
-                <p><strong>160, 320, 480, 640, 800, 960, 1120, 1280, 1440, 1600, 1760 Bs</strong></p>
-                <p>¡Tome sus previsiones al realizar recargas para esta operadora!</p>
+                <p id="mensaje-motivador">Que tengas un día lleno de prosperidad y éxito en todas tus ventas.</p>
             </div>
             <button class="info-btn" id="info-accept-btn">Entendido</button>
         </div>
@@ -864,11 +860,34 @@
             'Digitel': ['0412', '0422']
         };
 
+        // =============================================
+        // MENSAJES MOTIVADORES
+        // =============================================
+        const mensajesMotivadores = [
+            "Que cada recarga que hagas hoy sea un paso más hacia tus metas financieras.",
+            "Tu dedicación en este negocio es la semilla de tu prosperidad futura.",
+            "Hoy es un día perfecto para crecer y alcanzar nuevos niveles de éxito.",
+            "Cada cliente que atiendes es una oportunidad para brillar y crecer.",
+            "Tu esfuerzo de hoy construye el éxito de mañana. ¡Sigue adelante!",
+            "El éxito no es casualidad, es el resultado de tu constancia y dedicación.",
+            "Cada venta que realizas te acerca más a tus sueños. ¡Tú puedes!",
+            "Tu negocio es un reflejo de tu dedicación. ¡Hoy será un gran día!",
+            "La perseverancia es la clave del éxito. Sigue adelante con fe y determinación.",
+            "Cada recarga que procesas es una semilla de prosperidad para tu negocio.",
+            "Tu actitud positiva atrae abundancia. ¡Hoy será un día de grandes logros!",
+            "Confía en tu capacidad para superar cualquier reto que se presente hoy.",
+            "El éxito llega a quienes trabajan con pasión y perseverancia. ¡Ese eres tú!",
+            "Cada nuevo cliente es una nueva oportunidad para crecer y prosperar.",
+            "Tu negocio florece gracias a tu dedicación. ¡Sigue construyendo tu sueño!"
+        ];
+
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos del DOM
             const infoModal = document.getElementById('info-modal');
             const infoCloseBtn = document.getElementById('info-close-btn');
             const infoAcceptBtn = document.getElementById('info-accept-btn');
+            const saludoDinamico = document.getElementById('saludo-dinamico');
+            const mensajeMotivador = document.getElementById('mensaje-motivador');
             const operatorButtons = document.querySelectorAll('.operator-btn');
             const amountSelect = document.getElementById('amount-select');
             const operatorInfo = document.getElementById('operator-info');
@@ -904,8 +923,45 @@
             let isCedulaValid = false;
             let isPhoneValid = false;
 
+            // Función para obtener saludo según la hora y día
+            function obtenerSaludo() {
+                const ahora = new Date();
+                const hora = ahora.getHours();
+                const diaSemana = ahora.getDay(); // 0=Domingo, 1=Lunes, etc.
+                
+                let saludo = "";
+                
+                // Saludo según la hora
+                if (hora >= 5 && hora < 12) {
+                    saludo = "¡Buenos días!";
+                } else if (hora >= 12 && hora < 18) {
+                    saludo = "¡Buenas tardes!";
+                } else {
+                    saludo = "¡Buenas noches!";
+                }
+                
+                // Añadir día de la semana si es necesario
+                const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+                saludo += ` Feliz ${dias[diaSemana]}`;
+                
+                return saludo;
+            }
+
+            // Función para obtener mensaje motivador aleatorio
+            function obtenerMensajeMotivador() {
+                const indiceAleatorio = Math.floor(Math.random() * mensajesMotivadores.length);
+                return mensajesMotivadores[indiceAleatorio];
+            }
+
             // Mostrar la ventana emergente de información al cargar la página
             setTimeout(function() {
+                // Configurar el saludo dinámico
+                saludoDinamico.textContent = obtenerSaludo();
+                
+                // Configurar mensaje motivador aleatorio
+                mensajeMotivador.textContent = obtenerMensajeMotivador();
+                
+                // Mostrar la ventana
                 infoModal.style.display = 'flex';
             }, 500); // Mostrar después de 0.5 segundos
 
@@ -1307,4 +1363,3 @@ Monto: ${amount}
     </script>
 </body>
 </html>
-
