@@ -21,115 +21,6 @@
             padding: 15px;
         }
         
-        /* Estilos para la ventana emergente de mantenimiento */
-        .maintenance-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 3000;
-            padding: 15px;
-        }
-        
-        .maintenance-content {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-            border-radius: 15px;
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .maintenance-icon {
-            font-size: 70px;
-            margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .maintenance-title {
-            font-size: 28px;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-            color: #e74c3c;
-        }
-        
-        .maintenance-subtitle {
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: #ecf0f1;
-        }
-        
-        .maintenance-text {
-            font-size: 16px;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            color: #ecf0f1;
-        }
-        
-        .maintenance-highlight {
-            font-weight: 700;
-            font-size: 18px;
-            margin: 10px 0;
-            color: #f1c40f;
-        }
-        
-        .maintenance-time {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 15px 0;
-            color: #2ecc71;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-        
-        .maintenance-btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .maintenance-btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-        }
-        
-        .maintenance-btn:disabled {
-            background-color: #7f8c8d;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
         /* Estilos para la ventana emergente de información */
         .info-modal {
             position: fixed;
@@ -186,6 +77,12 @@
             font-size: 60px;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         .info-title {
@@ -794,23 +691,6 @@
     </style>
 </head>
 <body>
-    <!-- Ventana emergente de mantenimiento -->
-    <div class="maintenance-modal" id="maintenance-modal">
-        <div class="maintenance-content">
-            <div class="maintenance-icon">🔧</div>
-            <h1 class="maintenance-title">SISTEMA DE RECARGAS EN MANTENIMIENTO</h1>
-            <h2 class="maintenance-subtitle">OFRECEMOS DISCULPAS POR LAS MOLESTIAS OCASIONADAS</h2>
-            <div class="maintenance-text">
-                <p>Actualmente estamos realizando tareas de mantenimiento para mejorar nuestro servicio.</p>
-                <div class="maintenance-time" id="maintenance-time">Hasta las 8:30 AM</div>
-                <p class="maintenance-highlight">EN BREVE ESTAREMOS OPERATIVOS</p>
-                <p>Mientras tanto, agradecemos su paciencia y comprensión.</p>
-            </div>
-            <button class="maintenance-btn" id="maintenance-close-btn" disabled>Entendido</button>
-            <div id="countdown-timer" style="margin-top: 15px; font-size: 14px; color: #ecf0f1;"></div>
-        </div>
-    </div>
-    
     <!-- Ventana emergente de información -->
     <div class="info-modal" id="info-modal">
         <div class="info-content">
@@ -963,12 +843,6 @@
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyj5DeZCgkHeI9dbpe518qTLoRhErPDDKamZjZvC8S8z0xZ9BegFk_JpSVrL0jJ4sUOw/exec';
         
         // =============================================
-        // CONFIGURACIÓN DE MANTENIMIENTO
-        // =============================================
-        const MAINTENANCE_END_HOUR = 8;    // 8 AM
-        const MAINTENANCE_END_MINUTE = 30; // 30 minutos
-        
-        // =============================================
         // MONTOS PRE-DEFINIDOS
         // =============================================
         const montosPorOperadora = {
@@ -1009,10 +883,6 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             // Elementos del DOM
-            const maintenanceModal = document.getElementById('maintenance-modal');
-            const maintenanceCloseBtn = document.getElementById('maintenance-close-btn');
-            const maintenanceTime = document.getElementById('maintenance-time');
-            const countdownTimer = document.getElementById('countdown-timer');
             const infoModal = document.getElementById('info-modal');
             const infoCloseBtn = document.getElementById('info-close-btn');
             const infoAcceptBtn = document.getElementById('info-accept-btn');
@@ -1052,69 +922,7 @@
             let selectedAmount = 0;
             let isCedulaValid = false;
             let isPhoneValid = false;
-            let maintenanceInterval;
 
-            // Función para verificar si estamos en horario de mantenimiento
-            function isMaintenanceTime() {
-                const ahora = new Date();
-                const horaActual = ahora.getHours();
-                const minutosActual = ahora.getMinutes();
-                
-                // Verificar si es antes de las 8:30 AM
-                if (horaActual < MAINTENANCE_END_HOUR || 
-                   (horaActual === MAINTENANCE_END_HOUR && minutosActual < MAINTENANCE_END_MINUTE)) {
-                    return true;
-                }
-                return false;
-            }
-            
-            // Función para calcular el tiempo restante hasta el fin del mantenimiento
-            function getTimeUntilMaintenanceEnds() {
-                const ahora = new Date();
-                const finMantenimiento = new Date();
-                finMantenimiento.setHours(MAINTENANCE_END_HOUR, MAINTENANCE_END_MINUTE, 0, 0);
-                
-                // Si ya pasó la hora de mantenimiento de hoy, calcular para mañana
-                if (ahora > finMantenimiento) {
-                    finMantenimiento.setDate(finMantenimiento.getDate() + 1);
-                }
-                
-                const diferencia = finMantenimiento - ahora;
-                
-                const horas = Math.floor(diferencia / (1000 * 60 * 60));
-                const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-                
-                return {
-                    horas,
-                    minutos,
-                    segundos,
-                    total: diferencia
-                };
-            }
-            
-            // Función para actualizar el contador de tiempo
-            function updateCountdown() {
-                const tiempoRestante = getTimeUntilMaintenanceEnds();
-                
-                if (tiempoRestante.total <= 0) {
-                    // El mantenimiento ha terminado
-                    clearInterval(maintenanceInterval);
-                    maintenanceModal.style.display = 'none';
-                    mostrarBienvenida();
-                    return;
-                }
-                
-                // Actualizar el texto del contador
-                countdownTimer.textContent = `Tiempo restante: ${tiempoRestante.horas.toString().padStart(2, '0')}:${tiempoRestante.minutos.toString().padStart(2, '0')}:${tiempoRestante.segundos.toString().padStart(2, '0')}`;
-                
-                // Habilitar el botón si quedan menos de 5 minutos
-                if (tiempoRestante.horas === 0 && tiempoRestante.minutos < 5) {
-                    maintenanceCloseBtn.disabled = false;
-                    maintenanceCloseBtn.textContent = "Continuar al sistema";
-                }
-            }
-            
             // Función para obtener saludo según la hora y día
             function obtenerSaludo() {
                 const ahora = new Date();
@@ -1145,8 +953,8 @@
                 return mensajesMotivadores[indiceAleatorio];
             }
 
-            // Función para mostrar la ventana de bienvenida después del mantenimiento
-            function mostrarBienvenida() {
+            // Mostrar la ventana emergente de información al cargar la página
+            setTimeout(function() {
                 // Configurar el saludo dinámico
                 saludoDinamico.textContent = obtenerSaludo();
                 
@@ -1154,31 +962,9 @@
                 mensajeMotivador.textContent = obtenerMensajeMotivador();
                 
                 // Mostrar la ventana
-                setTimeout(() => {
-                    infoModal.style.display = 'flex';
-                }, 500);
-            }
-            
-            // Verificar el estado de mantenimiento al cargar la página
-            function checkMaintenanceStatus() {
-                if (isMaintenanceTime()) {
-                    // Estamos en horario de mantenimiento
-                    maintenanceModal.style.display = 'flex';
-                    
-                    // Actualizar el contador inmediatamente
-                    updateCountdown();
-                    
-                    // Iniciar el intervalo para actualizar el contador cada segundo
-                    maintenanceInterval = setInterval(updateCountdown, 1000);
-                } else {
-                    // No estamos en horario de mantenimiento, mostrar bienvenida directamente
-                    mostrarBienvenida();
-                }
-            }
-            
-            // Iniciar la verificación de mantenimiento
-            checkMaintenanceStatus();
-            
+                infoModal.style.display = 'flex';
+            }, 500); // Mostrar después de 0.5 segundos
+
             // Cargar datos del almacenamiento local al iniciar
             const savedNegocio = localStorage.getItem('negocioRecargas');
             if (savedNegocio) {
@@ -1391,15 +1177,6 @@ Monto: ${amount}
                     }, 4000);
                 });
             }
-            
-            // Event listeners para la ventana emergente de mantenimiento
-            maintenanceCloseBtn.addEventListener('click', function() {
-                if (!this.disabled) {
-                    clearInterval(maintenanceInterval);
-                    maintenanceModal.style.display = 'none';
-                    mostrarBienvenida();
-                }
-            });
             
             // Event listeners para la ventana emergente de información
             infoCloseBtn.addEventListener('click', function() {
