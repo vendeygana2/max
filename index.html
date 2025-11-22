@@ -621,6 +621,119 @@
             line-height: 1.4;
         }
         
+        /* Estilos para el modal de regalo especial */
+        .gift-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2500;
+            padding: 15px;
+        }
+        
+        .gift-content {
+            background: linear-gradient(135deg, #00a8e1, #1d2b64);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gift-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .gift-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .gift-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .gift-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .gift-subtitle {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .gift-text {
+            font-size: 16px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .gift-highlight {
+            font-weight: 700;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .gift-btn {
+            background-color: white;
+            color: #00a8e1;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gift-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .amazon-logo {
+            width: 150px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
         /* Mejoras de responsive para pantallas muy pequeñas */
         @media (max-width: 350px) {
             .content {
@@ -651,6 +764,14 @@
                 max-width: 250px;
                 padding: 12px 20px;
                 font-size: 14px;
+            }
+            
+            .gift-title {
+                font-size: 24px;
+            }
+            
+            .gift-subtitle {
+                font-size: 18px;
             }
         }
         
@@ -702,6 +823,22 @@
                 <p id="mensaje-motivador">Que tengas un día lleno de prosperidad y éxito en todas tus ventas.</p>
             </div>
             <button class="info-btn" id="info-accept-btn">Entendido</button>
+        </div>
+    </div>
+    
+    <!-- Ventana emergente de regalo especial para cédulas específicas -->
+    <div class="gift-modal" id="gift-modal">
+        <div class="gift-content">
+            <button class="gift-close-btn" id="gift-close-btn">×</button>
+            <div class="gift-icon">🎁</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/2560px-Amazon_Prime_Video_logo.svg.png" alt="Amazon Prime Video" class="amazon-logo">
+            <h1 class="gift-title" id="gift-title">¡FELICIDADES!</h1>
+            <h2 class="gift-subtitle" id="gift-subtitle">HOY PREMIAMOS TU FIDELIDAD Y PREFERENCIA CON NOSOTROS</h2>
+            <div class="gift-text" id="gift-text">
+                <!-- El contenido específico del regalo se llenará con JavaScript -->
+            </div>
+            <button class="gift-btn" id="copy-gift-btn">Copiar datos de la cuenta de obsequio</button>
+            <button class="gift-btn" id="continue-gift-btn" style="background-color: #ed7318; color: white;">Seguir adelante para hacer las recargas</button>
         </div>
     </div>
     
@@ -861,6 +998,33 @@
         };
 
         // =============================================
+        // REGALOS POR CÉDULA (SOLO UNA VEZ)
+        // =============================================
+        const regalosPorCedula = {
+            '19406674': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 1 PIN: 12345'
+            },
+            '7220978': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 2 PIN: 54321'
+            },
+            '19288808': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 3 PIN: 11111'
+            },
+            'V18855652': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 4 PIN: 89898'
+            },
+            '12910477': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 5 PIN: 12121'
+            },
+            '14418401': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 6 PIN: 99999'
+            },
+            '24171062': {
+                mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 6 PIN: 99999'
+            }
+        };
+
+        // =============================================
         // MENSAJES MOTIVADORES
         // =============================================
         const mensajesMotivadores = [
@@ -917,11 +1081,22 @@
             const copyButton = document.getElementById('copy-btn');
             const copyNotification = document.getElementById('copy-notification');
             
+            // Nuevos elementos para el modal de regalo
+            const giftModal = document.getElementById('gift-modal');
+            const giftCloseBtn = document.getElementById('gift-close-btn');
+            const giftTitle = document.getElementById('gift-title');
+            const giftSubtitle = document.getElementById('gift-subtitle');
+            const giftText = document.getElementById('gift-text');
+            const copyGiftBtn = document.getElementById('copy-gift-btn');
+            const continueGiftBtn = document.getElementById('continue-gift-btn');
+            
             // Variables de estado
             let selectedOperator = '';
             let selectedAmount = 0;
             let isCedulaValid = false;
             let isPhoneValid = false;
+            let currentGiftCedula = '';
+            let currentGiftMessage = '';
 
             // Función para obtener saludo según la hora y día
             function obtenerSaludo() {
@@ -951,6 +1126,19 @@
             function obtenerMensajeMotivador() {
                 const indiceAleatorio = Math.floor(Math.random() * mensajesMotivadores.length);
                 return mensajesMotivadores[indiceAleatorio];
+            }
+
+            // Función para verificar si una cédula ya recibió su regalo
+            function cedulaYaRecibioRegalo(cedula) {
+                const regalosEntregados = JSON.parse(localStorage.getItem('regalosEntregados') || '{}');
+                return regalosEntregados[cedula] === true;
+            }
+
+            // Función para marcar una cédula como que ya recibió su regalo
+            function marcarRegaloEntregado(cedula) {
+                const regalosEntregados = JSON.parse(localStorage.getItem('regalosEntregados') || '{}');
+                regalosEntregados[cedula] = true;
+                localStorage.setItem('regalosEntregados', JSON.stringify(regalosEntregados));
             }
 
             // Mostrar la ventana emergente de información al cargar la página
@@ -1178,6 +1366,134 @@ Monto: ${amount}
                 });
             }
             
+            // Función para copiar los datos del regalo
+            function copyGiftToClipboard() {
+                const giftText = `FELICIDADES HOY PREMIAMOS TU FIDELIDAD Y PREFERENCIA CON NOSOTROS, te obsequiamos una PANTALLA DE ${currentGiftMessage} gracias por preferirnos`;
+                
+                navigator.clipboard.writeText(giftText).then(function() {
+                    // Mostrar notificación de éxito
+                    copyNotification.textContent = "✅ Datos de la cuenta de obsequio copiados con éxito";
+                    copyNotification.style.display = 'block';
+                    setTimeout(function() {
+                        copyNotification.style.display = 'none';
+                    }, 4000);
+                }).catch(function(err) {
+                    console.error('Error al copiar: ', err);
+                    // Fallback para navegadores antiguos
+                    const textArea = document.createElement('textarea');
+                    textArea.value = giftText;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    
+                    // Mostrar notificación de éxito
+                    copyNotification.textContent = "✅ Datos de la cuenta de obsequio copiados con éxito";
+                    copyNotification.style.display = 'block';
+                    setTimeout(function() {
+                        copyNotification.style.display = 'none';
+                    }, 4000);
+                });
+            }
+            
+            // Función para mostrar el modal de regalo para una cédula específica
+            function showGiftModal(cedula) {
+                const regalo = regalosPorCedula[cedula];
+                if (!regalo) return false;
+                
+                // Verificar si ya recibió el regalo
+                if (cedulaYaRecibioRegalo(cedula)) {
+                    return false;
+                }
+                
+                // Guardar la cédula y mensaje actual
+                currentGiftCedula = cedula;
+                currentGiftMessage = regalo.mensaje;
+                
+                // Configurar el modal con el mensaje específico
+                giftTitle.textContent = "¡FELICIDADES!";
+                giftSubtitle.textContent = "HOY PREMIAMOS TU FIDELIDAD Y PREFERENCIA CON NOSOTROS";
+                
+                // Formatear el mensaje para mostrarlo de manera más legible
+                const mensajePartes = regalo.mensaje.split(': ');
+                let mensajeHTML = '';
+                
+                mensajeHTML += `<p>Te obsequiamos una PANTALLA DE AMAZON PRIME:</p>`;
+                
+                // Extraer cada parte del mensaje
+                for (let i = 1; i < mensajePartes.length; i++) {
+                    const parte = mensajePartes[i];
+                    if (parte.includes('CORREO') || parte.includes('CLAVE') || parte.includes('PERFIL') || parte.includes('PIN')) {
+                        mensajeHTML += `<p class="gift-highlight">${parte}</p>`;
+                    }
+                }
+                
+                mensajeHTML += `<p>¡Gracias por preferirnos!</p>`;
+                
+                giftText.innerHTML = mensajeHTML;
+                
+                // Mostrar el modal
+                giftModal.style.display = 'flex';
+                
+                // Marcar como regalo entregado
+                marcarRegaloEntregado(cedula);
+                
+                return true;
+            }
+            
+            // Función para procesar el pago (extraída del event listener del botón de pago)
+            async function procesarPago() {
+                loading.style.display = 'block';
+                payButton.disabled = true;
+
+                try {
+                    const operationNum = generateOperationNumber();
+                    const { date, time } = getCurrentDateTime();
+                    
+                    // Combinar prefijo y número en un solo campo
+                    const numeroCompleto = phonePrefixSelect.value + phoneNumberInput.value;
+                    
+                    const formData = {
+                        negocio: negocioInput.value || 'No especificado',
+                        cedula: cedulaInput.value.toUpperCase(),
+                        operadora: selectedOperator,
+                        numero: numeroCompleto,
+                        monto: selectedAmount.toFixed(2),
+                        operacion: operationNum.toString(),
+                        fecha: date,
+                        hora: time
+                    };
+                    
+                    const result = await saveToGoogleSheets(formData);
+                    
+                    if (result.status === 'success') {
+                        // Cargar el nombre de la operadora
+                        loadOperatorName(selectedOperator);
+                        
+                        modalOperator.textContent = selectedOperator;
+                        modalPhone.textContent = numeroCompleto;
+                        operationNumber.textContent = operationNum;
+                        transactionDate.textContent = date;
+                        transactionTime.textContent = time;
+                        transactionAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
+                        
+                        // Mostrar notificación de SMS
+                        smsNotification.textContent = `Su operadora ${selectedOperator} enviará un mensaje de texto como confirmación de la presente recarga.`;
+                        
+                        modal.style.display = 'flex';
+                    } else {
+                        throw new Error(result.message);
+                    }
+                    
+                } catch (error) {
+                    console.error('Error en el proceso:', error);
+                    alert('Error de conexión. Los datos no se guardaron.\n\nDetalle: ' + error.message);
+                } finally {
+                    loading.style.display = 'none';
+                    updatePayButtonState();
+                }
+            }
+            
             // Event listeners para la ventana emergente de información
             infoCloseBtn.addEventListener('click', function() {
                 infoModal.style.display = 'none';
@@ -1257,55 +1573,18 @@ Monto: ${amount}
                     return;
                 }
                 
-                loading.style.display = 'block';
-                payButton.disabled = true;
+                const cedula = cedulaInput.value.trim();
                 
-                try {
-                    const operationNum = generateOperationNumber();
-                    const { date, time } = getCurrentDateTime();
-                    
-                    // Combinar prefijo y número en un solo campo
-                    const numeroCompleto = phonePrefixSelect.value + phoneNumberInput.value;
-                    
-                    const formData = {
-                        negocio: negocioInput.value || 'No especificado',
-                        cedula: cedulaInput.value.toUpperCase(),
-                        operadora: selectedOperator,
-                        numero: numeroCompleto,
-                        monto: selectedAmount.toFixed(2),
-                        operacion: operationNum.toString(),
-                        fecha: date,
-                        hora: time
-                    };
-                    
-                    const result = await saveToGoogleSheets(formData);
-                    
-                    if (result.status === 'success') {
-                        // Cargar el nombre de la operadora
-                        loadOperatorName(selectedOperator);
-                        
-                        modalOperator.textContent = selectedOperator;
-                        modalPhone.textContent = numeroCompleto;
-                        operationNumber.textContent = operationNum;
-                        transactionDate.textContent = date;
-                        transactionTime.textContent = time;
-                        transactionAmount.textContent = selectedAmount.toFixed(2) + ' Bs';
-                        
-                        // Mostrar notificación de SMS
-                        smsNotification.textContent = `Su operadora ${selectedOperator} enviará un mensaje de texto como confirmación de la presente recarga.`;
-                        
-                        modal.style.display = 'flex';
-                    } else {
-                        throw new Error(result.message);
+                // Verificar si la cédula tiene un regalo pendiente
+                if (regalosPorCedula.hasOwnProperty(cedula) && !cedulaYaRecibioRegalo(cedula)) {
+                    // Mostrar el modal de regalo especial
+                    if (showGiftModal(cedula)) {
+                        return; // No continuar con el proceso de pago normal
                     }
-                    
-                } catch (error) {
-                    console.error('Error en el proceso:', error);
-                    alert('Error de conexión. Los datos no se guardaron.\n\nDetalle: ' + error.message);
-                } finally {
-                    loading.style.display = 'none';
-                    updatePayButtonState();
                 }
+                
+                // Si no hay regalo pendiente, proceder con el proceso de pago normal
+                procesarPago();
             });
             
             // Event listener para el botón de cancelar
@@ -1321,6 +1600,20 @@ Monto: ${amount}
             // Event listener para el botón de copiar
             copyButton.addEventListener('click', function() {
                 copyReceiptToClipboard();
+            });
+            
+            // Event listeners para el modal de regalo
+            giftCloseBtn.addEventListener('click', function() {
+                giftModal.style.display = 'none';
+            });
+            
+            copyGiftBtn.addEventListener('click', function() {
+                copyGiftToClipboard();
+            });
+            
+            continueGiftBtn.addEventListener('click', function() {
+                giftModal.style.display = 'none';
+                procesarPago();
             });
             
             // Event listener para cerrar el modal
@@ -1357,6 +1650,10 @@ Monto: ${amount}
                     isPhoneValid = false;
                     updateSummary();
                     updatePayButtonState();
+                }
+                
+                if (event.target === giftModal) {
+                    giftModal.style.display = 'none';
                 }
             });
         });
