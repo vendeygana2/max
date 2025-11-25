@@ -637,7 +637,7 @@
         }
         
         .gift-content {
-            background: linear-gradient(135deg, #00a8e1, #1d2b64);
+            background: linear-gradient(135deg, #0066cc, #003366);
             border-radius: 15px;
             width: 100%;
             max-width: 500px;
@@ -710,7 +710,7 @@
         
         .gift-btn {
             background-color: white;
-            color: #00a8e1;
+            color: #0066cc;
             border: none;
             padding: 14px 30px;
             border-radius: 50px;
@@ -728,8 +728,8 @@
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
         }
         
-        .amazon-logo {
-            width: 150px;
+        .paramount-logo {
+            width: 180px;
             margin: 0 auto 20px;
             display: block;
         }
@@ -831,7 +831,7 @@
         <div class="gift-content">
             <button class="gift-close-btn" id="gift-close-btn">×</button>
             <div class="gift-icon">🎁</div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Amazon_Prime_Video_logo.svg/2560px-Amazon_Prime_Video_logo.svg.png" alt="Amazon Prime Video" class="amazon-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Paramount_Plus.svg/2560px-Paramount_Plus.svg.png" alt="Paramount+" class="paramount-logo">
             <h1 class="gift-title" id="gift-title">¡FELICIDADES!</h1>
             <h2 class="gift-subtitle" id="gift-subtitle">HOY PREMIAMOS TU FIDELIDAD Y PREFERENCIA CON NOSOTROS</h2>
             <div class="gift-text" id="gift-text">
@@ -1021,6 +1021,12 @@
             },
             '24171062': {
                 mensaje: 'AMAZON PRIME: CORREO: sixji99@outlook.com CLAVE: devraj4040 PERFIL 6 PIN: 99999'
+            },
+            '23130505': {
+                mensaje: 'PARAMOUNT: CORREO: Hsuz75z@gmail.com CLAVE: 112233 PERFIL 1'
+            },
+            '20281440': {
+                mensaje: 'PARAMOUNT: CORREO: Hsuz75z@gmail.com CLAVE: 112233 PERFIL 2'
             }
         };
 
@@ -1418,7 +1424,9 @@ Monto: ${amount}
                 const mensajePartes = regalo.mensaje.split(': ');
                 let mensajeHTML = '';
                 
-                mensajeHTML += `<p>Te obsequiamos una PANTALLA DE AMAZON PRIME:</p>`;
+                // Determinar si es Amazon Prime o Paramount
+                const servicio = mensajePartes[0];
+                mensajeHTML += `<p>Te obsequiamos una PANTALLA DE ${servicio}:</p>`;
                 
                 // Extraer cada parte del mensaje
                 for (let i = 1; i < mensajePartes.length; i++) {
